@@ -7,8 +7,10 @@
     --text-primary: #0f172a;
     --text-secondary: #475569;
     --text-muted: #64748b;
-    --accent-primary: #3b82f6;
-    --accent-secondary: #1d4ed8;
+    --accent-primary: #1d4ed8;
+    --accent-secondary: #1e40af;
+    --link-color: #1d4ed8;
+    --link-hover: #1e40af;
     --border-color: #e2e8f0;
     --shadow-light: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
     --shadow-medium: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
@@ -24,8 +26,10 @@
         --text-primary: #f8fafc;
         --text-secondary: #cbd5e1;
         --text-muted: #94a3b8;
-        --accent-primary: #60a5fa;
-        --accent-secondary: #3b82f6;
+        --accent-primary: #3b82f6;
+        --accent-secondary: #60a5fa;
+        --link-color: #60a5fa;
+        --link-hover: #93c5fd;
         --border-color: #334155;
         --shadow-light: 0 1px 3px 0 rgba(0, 0, 0, 0.3), 0 1px 2px 0 rgba(0, 0, 0, 0.2);
         --shadow-medium: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
@@ -57,6 +61,27 @@ body {
 :focus {
     outline: 2px solid var(--accent-primary);
     outline-offset: 2px;
+}
+
+/* Ensure all links have proper contrast */
+a {
+    color: var(--link-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover,
+a:focus {
+    color: var(--link-hover);
+}
+
+/* Override for specific link types */
+.logo {
+    color: var(--text-primary);
+}
+
+.logo:hover {
+    color: var(--accent-primary);
 }
 
 /* Skip to main content link for screen readers */
@@ -111,13 +136,6 @@ body {
 .logo {
     font-size: 1.5rem;
     font-weight: 700;
-    color: var(--text-primary);
-    text-decoration: none;
-    transition: color 0.3s ease;
-}
-
-.logo:hover {
-    color: var(--accent-primary);
 }
 
 .nav-menu {
@@ -127,16 +145,8 @@ body {
 }
 
 .nav-link {
-    color: var(--text-secondary);
-    text-decoration: none;
     font-weight: 500;
-    transition: color 0.3s ease;
     position: relative;
-}
-
-.nav-link:hover,
-.nav-link:focus {
-    color: var(--accent-primary);
 }
 
 .nav-link::after {
@@ -146,7 +156,7 @@ body {
     left: 0;
     width: 0;
     height: 2px;
-    background-color: var(--accent-primary);
+    background-color: var(--link-hover);
     transition: width 0.3s ease;
 }
 
@@ -353,15 +363,11 @@ body {
 }
 
 .contact-item a {
-    color: var(--accent-primary);
-    text-decoration: none;
     font-weight: 500;
-    transition: color 0.3s ease;
 }
 
 .contact-item a:hover,
 .contact-item a:focus {
-    color: var(--accent-secondary);
     text-decoration: underline;
 }
 
@@ -461,6 +467,8 @@ body {
         --bg-primary: #ffffff;
         --bg-secondary: #f0f0f0;
         --accent-primary: #0066cc;
+        --link-color: #0066cc;
+        --link-hover: #004499;
         --border-color: #000000;
     }
     
@@ -471,6 +479,8 @@ body {
             --bg-primary: #000000;
             --bg-secondary: #1a1a1a;
             --accent-primary: #66b3ff;
+            --link-color: #66b3ff;
+            --link-hover: #99ccff;
             --border-color: #ffffff;
         }
     }
