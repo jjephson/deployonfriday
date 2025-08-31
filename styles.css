@@ -63,6 +63,19 @@ body {
     outline-offset: 2px;
 }
 
+/* Visually hidden elements for screen readers */
+.visually-hidden {
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    padding: 0 !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    clip: rect(0, 0, 0, 0) !important;
+    white-space: nowrap !important;
+    border: 0 !important;
+}
+
 /* Ensure all links have proper contrast */
 a {
     color: var(--link-color);
@@ -77,11 +90,11 @@ a:focus {
 
 /* Override for specific link types */
 .logo {
-    color: var(--text-primary);
+    color: var(--text-primary) !important;
 }
 
 .logo:hover {
-    color: var(--accent-primary);
+    color: var(--accent-primary) !important;
 }
 
 /* Skip to main content link for screen readers */
@@ -130,12 +143,20 @@ a:focus {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem 0;
+    padding: 1rem 2rem;
 }
 
 .logo {
-    font-size: 1.5rem;
-    font-weight: 700;
+    font-size: 1.75rem;
+    font-weight: 600;
+    letter-spacing: -0.025em;
+    color: var(--text-primary);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.logo:hover {
+    color: var(--accent-primary);
 }
 
 .nav-menu {
@@ -225,12 +246,12 @@ a:focus {
 }
 
 .clients-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
-    gap: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
     margin-top: 3rem;
     align-items: center;
-    justify-items: center;
+    justify-content: center;
     max-width: 1500px;
     margin-left: auto;
     margin-right: auto;
@@ -243,30 +264,19 @@ a:focus {
     padding: 1rem;
     background-color: var(--bg-secondary);
     border-radius: 12px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
     box-shadow: var(--shadow-light);
-    min-height: 90px;
-    width: 100%;
-    max-width: 180px;
-}
-
-.client-logo:hover {
-    transform: translateY(-4px);
-    box-shadow: var(--shadow-medium);
+    height: 120px;
+    width: 120px;
+    flex-shrink: 0;
 }
 
 .client-logo img {
-    max-width: 100%;
+    max-width: 80px;
     max-height: 80px;
     width: auto;
     height: auto;
     object-fit: contain;
     filter: grayscale(100%);
-    transition: filter 0.3s ease;
-}
-
-.client-logo:hover img {
-    filter: grayscale(0%);
 }
 
 /* About Section */
@@ -410,8 +420,7 @@ a:focus {
     }
     
     .clients-grid {
-        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-        gap: 0.75rem;
+        gap: 1rem;
         max-width: 100%;
     }
     
