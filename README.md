@@ -1,6 +1,6 @@
 # deployonfriday.dev Portfolio
 
-A modern, accessible portfolio website built with HTML and CSS. Features dark/light mode support, responsive design, and WCAG 2.1 compliance.
+A modern, accessible portfolio website built with Vue.js 3 and Vite. Features dark/light mode support, responsive design, and WCAG 2.1 compliance.
 
 ## Features
 
@@ -12,6 +12,7 @@ A modern, accessible portfolio website built with HTML and CSS. Features dark/li
 - 🖨️ Print-friendly styles
 - 🎯 Reduced motion support
 - 🔍 High contrast mode support
+- ⚡ Built with Vue.js 3 and Vite
 
 ## Accessibility Features
 
@@ -26,10 +27,17 @@ A modern, accessible portfolio website built with HTML and CSS. Features dark/li
 
 ## Technologies Used
 
+- Vue.js 3
+- Vue Router 4
+- Vite
 - HTML5
 - CSS3 (with CSS Grid and Flexbox)
 - Google Fonts (Inter)
-- Placeholder images for demonstration
+
+## Prerequisites
+
+- Node.js (v16 or higher)
+- npm or yarn
 
 ## Local Development
 
@@ -39,46 +47,65 @@ git clone https://github.com/yourusername/deployonfriday.git
 cd deployonfriday
 ```
 
-2. Open `index.html` in your browser or use a local server:
+2. Install dependencies:
 ```bash
-# Using Python 3
-python -m http.server 8000
-
-# Using Node.js (if you have http-server installed)
-npx http-server
-
-# Using PHP
-php -S localhost:8000
+npm install
 ```
 
-3. Visit `http://localhost:8000` in your browser
+3. Start the development server:
+```bash
+npm run dev
+```
+
+4. Visit `http://localhost:5173` in your browser
+
+The development server will automatically reload when you make changes to the code.
+
+## Building for Production
+
+To create a production build:
+
+```bash
+npm run build
+```
+
+The built files will be in the `dist` directory.
+
+To preview the production build locally:
+
+```bash
+npm run preview
+```
+
+## Project Structure
+
+```
+deployonfriday/
+├── public/
+│   └── images/          # Static images (client logos, assets)
+├── src/
+│   ├── components/      # Vue components
+│   │   └── PortfolioPage.vue
+│   ├── views/           # Page components
+│   │   ├── Home.vue
+│   │   ├── ProjectsPage.vue
+│   │   └── portfolio/
+│   │       ├── FrontEndDevPage.vue
+│   │       ├── ScrumMasterPage.vue
+│   │       ├── GameIndustryPage.vue
+│   │       └── ManagerPage.vue
+│   ├── App.vue          # Root component
+│   ├── main.js          # Application entry point
+│   ├── router.js        # Vue Router configuration
+│   └── styles.css       # Global styles
+├── index.html           # HTML template
+├── vite.config.js       # Vite configuration
+└── package.json         # Dependencies and scripts
+```
 
 ## GitHub Pages Deployment
 
-### Method 1: Automatic Deployment (Recommended)
-
-1. Push your code to GitHub:
-```bash
-git add .
-git commit -m "Initial portfolio site"
-git push origin main
-```
-
-2. Go to your repository on GitHub
-
-3. Navigate to **Settings** → **Pages**
-
-4. Under **Source**, select **Deploy from a branch**
-
-5. Choose **main** branch and **/(root)** folder
-
-6. Click **Save**
-
-7. Your site will be available at `https://yourusername.github.io/deployonfriday`
-
-### Method 2: Using GitHub Actions (Optional)
-
-If you want more control over the deployment process, you can create a GitHub Action:
+### Method 1: Using GitHub Actions (Recommended)
 
 1. Create `.github/workflows/deploy.yml`:
 ```yaml
@@ -89,23 +116,55 @@ on:
     branches: [ main ]
 
 jobs:
-  deploy:
+  build-and-deploy:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
+    
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+        cache: 'npm'
+    
+    - name: Install dependencies
+      run: npm ci
+    
+    - name: Build
+      run: npm run build
     
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./
+        publish_dir: ./dist
 ```
+
+2. Push your code to GitHub:
+```bash
+git add .
+git commit -m "Setup Vue.js project"
+git push origin main
+```
+
+3. Go to your repository on GitHub → Settings → Pages
+4. Under Source, select "GitHub Actions"
+5. Your site will be automatically deployed on each push to main
+
+### Method 2: Manual Deployment
+
+1. Build the project:
+```bash
+npm run build
+```
+
+2. Copy the `dist` folder contents to your GitHub Pages branch or repository
 
 ## Customization
 
 ### Colors and Theming
 
-The site uses CSS custom properties for easy theming. Edit the `:root` variables in `styles.css`:
+The site uses CSS custom properties for easy theming. Edit the `:root` variables in `src/styles.css`:
 
 ```css
 :root {
@@ -118,16 +177,24 @@ The site uses CSS custom properties for easy theming. Edit the `:root` variables
 
 ### Content Updates
 
-- **About section**: Edit the text in the `about-text` div
-- **Skills**: Modify the `skills-list` in the HTML
-- **Contact information**: Update the links in the contact section
-- **Client logos**: Replace placeholder images with actual client logos
+- **Home page**: Edit `src/views/Home.vue`
+- **Portfolio pages**: Edit files in `src/views/portfolio/`
+- **Projects page**: Edit `src/views/ProjectsPage.vue`
+- **Navigation**: Edit `src/App.vue`
+- **Client logos**: Update the `clients` array in `src/views/Home.vue`
+
+### Adding New Portfolio Pages
+
+1. Create a new component in `src/views/portfolio/YourPage.vue`
+2. Use the `PortfolioPage` component as a template
+3. Add a route in `src/router.js`
+4. Add a navigation link in `src/App.vue`
 
 ### Images
 
-- Replace the placeholder profile image with your actual photo
-- Update client logos with real company logos
-- Optimize images for web (recommended: WebP format with fallbacks)
+- Place static images in `public/images/`
+- Reference them in components using `/images/filename.png`
+- The images folder structure is preserved in the build
 
 ## Browser Support
 
@@ -139,11 +206,17 @@ The site uses CSS custom properties for easy theming. Edit the `:root` variables
 ## Performance
 
 The site is optimized for performance with:
-- Minimal CSS (no frameworks)
-- Optimized images
-- Efficient CSS Grid and Flexbox layouts
+- Vite for fast development and optimized builds
+- Code splitting via Vue Router
 - Lazy loading for images
-- Minimal JavaScript (none required)
+- Efficient CSS Grid and Flexbox layouts
+- Minimal JavaScript bundle size
+
+## Scripts
+
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run preview` - Preview production build locally
 
 ## License
 
