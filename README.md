@@ -105,60 +105,43 @@ deployonfriday/
 
 ## GitHub Pages Deployment
 
-### Method 1: Using GitHub Actions (Recommended)
+### Automatic Deployment (Already Configured)
 
-1. Create `.github/workflows/deploy.yml`:
-```yaml
-name: Deploy to GitHub Pages
+The project is set up with GitHub Actions to automatically build and deploy on every push to the `main` branch.
 
-on:
-  push:
-    branches: [ main ]
-
-jobs:
-  build-and-deploy:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v3
-    
-    - name: Setup Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: '18'
-        cache: 'npm'
-    
-    - name: Install dependencies
-      run: npm ci
-    
-    - name: Build
-      run: npm run build
-    
-    - name: Deploy to GitHub Pages
-      uses: peaceiris/actions-gh-pages@v3
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./dist
-```
-
-2. Push your code to GitHub:
+**How it works:**
+1. Push your code to GitHub:
 ```bash
 git add .
-git commit -m "Setup Vue.js project"
+git commit -m "Your changes"
 git push origin main
 ```
 
-3. Go to your repository on GitHub → Settings → Pages
-4. Under Source, select "GitHub Actions"
-5. Your site will be automatically deployed on each push to main
+2. GitHub Actions will automatically:
+   - Install dependencies
+   - Build the Vue.js project
+   - Deploy to GitHub Pages
 
-### Method 2: Manual Deployment
+3. Your site will be live at `https://deployonfriday.dev` (or your GitHub Pages URL)
+
+**To enable GitHub Pages:**
+1. Go to your repository on GitHub
+2. Navigate to **Settings** → **Pages**
+3. Under **Source**, select **GitHub Actions**
+4. The workflow will run automatically on each push
+
+**Note:** The first deployment may take a few minutes. Subsequent deployments are faster.
+
+### Manual Deployment (Alternative)
+
+If you prefer to build locally before pushing:
 
 1. Build the project:
 ```bash
 npm run build
 ```
 
-2. Copy the `dist` folder contents to your GitHub Pages branch or repository
+2. The `dist` folder contains the built files ready for deployment
 
 ## Customization
 
