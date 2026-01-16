@@ -224,7 +224,6 @@ export default {
   padding: 2.5rem;
   position: relative;
   overflow: hidden;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   backdrop-filter: blur(10px);
 }
 
@@ -237,11 +236,9 @@ export default {
   height: 3px;
   background: linear-gradient(90deg, #60a5fa, #34d399, #a78bfa);
   opacity: 0;
-  transition: opacity 0.4s ease;
 }
 
 .game-block:hover {
-  transform: translateY(-4px);
   border-color: rgba(96, 165, 250, 0.4);
   box-shadow: 
     0 10px 40px rgba(59, 130, 246, 0.2),
@@ -296,7 +293,6 @@ export default {
   font-size: 1rem;
   line-height: 1.6;
   border-bottom: 1px solid rgba(96, 165, 250, 0.1);
-  transition: color 0.3s ease;
 }
 
 .game-block-list li:last-child {
