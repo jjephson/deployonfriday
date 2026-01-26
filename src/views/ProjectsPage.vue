@@ -1,34 +1,42 @@
 <template>
   <main id="main" role="main" class="projects-page">
-    <div class="container">
-      <h1 class="section-title">Current Projects</h1>
-      <p class="projects-intro">Here are the projects and initiatives I'm currently working on. These represent ongoing work, active collaborations, and projects in various stages of development.</p>
-      <div class="projects-list">
-        <article 
-          v-for="project in projects" 
-          :key="project.id"
-          class="project-item"
-          :class="'project-item-' + project.status"
-        >
-          <div class="project-header">
-            <h2 class="project-title">{{ project.title }}</h2>
-            <span class="project-status" :class="'status-' + project.status">{{ project.status }}</span>
-          </div>
-          <p class="project-description">{{ project.description }}</p>
-          <div class="project-details">
-            <div class="project-meta">
-              <span class="project-type">{{ project.type }}</span>
-              <span class="project-date">Started: {{ project.startDate }}</span>
+    <div class="page-hero">
+      <div class="page-hero-overlay"></div>
+      <div class="container">
+        <h1 class="page-title">Current Projects</h1>
+        <p class="page-subtitle">Active initiatives focused on accessibility, performance, and design systems</p>
+      </div>
+    </div>
+    <div class="page-content">
+      <div class="container">
+        <p class="projects-intro">Here are the projects and initiatives I'm currently working on. These represent ongoing work, active collaborations, and projects in various stages of development.</p>
+        <div class="projects-list">
+          <article 
+            v-for="project in projects" 
+            :key="project.id"
+            class="project-item"
+            :class="'project-item-' + project.status"
+          >
+            <div class="project-header">
+              <h2 class="project-title">{{ project.title }}</h2>
+              <span class="project-status" :class="'status-' + project.status">{{ project.status }}</span>
             </div>
-            <div v-if="project.technologies" class="project-technologies">
-              <span 
-                v-for="tech in project.technologies" 
-                :key="tech"
-                class="tech-tag"
-              >{{ tech }}</span>
+            <p class="project-description">{{ project.description }}</p>
+            <div class="project-details">
+              <div class="project-meta">
+                <span class="project-type">{{ project.type }}</span>
+                <span class="project-date">Started: {{ project.startDate }}</span>
+              </div>
+              <div v-if="project.technologies" class="project-technologies">
+                <span 
+                  v-for="tech in project.technologies" 
+                  :key="tech"
+                  class="tech-tag"
+                >{{ tech }}</span>
+              </div>
             </div>
-          </div>
-        </article>
+          </article>
+        </div>
       </div>
     </div>
   </main>
