@@ -458,26 +458,19 @@ a:focus {
     justify-content: center;
     align-items: center;
     padding: 1rem;
-    background: linear-gradient(135deg, rgba(30, 41, 59, 0.8) 0%, rgba(15, 23, 42, 0.9) 100%);
+    background: #ffffff;
     border-radius: 16px;
-    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.5);
+    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.4);
     height: 120px;
     width: 120px;
     flex-shrink: 0;
-    border: 1px solid rgba(96, 165, 250, 0.2);
+    border: 1px solid rgba(96, 165, 250, 0.15);
     position: relative;
     overflow: hidden;
 }
 
 .client-logo::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, #60a5fa, #34d399, #a78bfa);
-    opacity: 0.08;
+    content: none;
 }
 
 .client-logo:hover {
@@ -490,13 +483,16 @@ a:focus {
     width: auto;
     height: auto;
     object-fit: contain;
-    filter: drop-shadow(0 0 10px rgba(96, 165, 250, 0.2));
+    background: #ffffff;
+    padding: 6px;
+    border-radius: 8px;
+    filter: none;
     position: relative;
     z-index: 1;
 }
 
 .client-logo:hover img {
-    filter: drop-shadow(0 0 12px rgba(96, 165, 250, 0.4));
+    filter: none;
 }
 
 /* About Section */
@@ -632,29 +628,30 @@ a:focus {
 .contact > .container {
     position: relative;
     z-index: 1;
+    max-width: 1000px;
 }
 
 .contact-text {
     text-align: center;
     color: var(--text-secondary);
     font-size: 1.1rem;
-    margin-bottom: 3rem;
-    max-width: 600px;
+    margin-bottom: 2rem;
+    max-width: 720px;
     margin-left: auto;
     margin-right: auto;
 }
 
 .contact-info {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem;
-    margin-top: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
 }
 
 .contact-item {
     text-align: center;
-    padding: 2rem;
-    background: linear-gradient(135deg, rgba(30, 41, 59, 0.8) 0%, rgba(15, 23, 42, 0.9) 100%);
+    padding: 1.75rem;
+    background: linear-gradient(135deg, rgba(30, 41, 59, 0.9) 0%, rgba(15, 23, 42, 0.95) 100%);
     border-radius: 16px;
     box-shadow: 0 10px 30px rgba(15, 23, 42, 0.5);
     border: 1px solid rgba(96, 165, 250, 0.2);
@@ -670,7 +667,7 @@ a:focus {
     right: 0;
     bottom: 0;
     background: var(--gradient-primary);
-    opacity: 0.06;
+    opacity: 0.08;
     z-index: 0;
 }
 
@@ -699,11 +696,13 @@ a:focus {
 
 .contact-item a {
     font-weight: 500;
+    color: #e2e8f0;
 }
 
 .contact-item a:hover,
 .contact-item a:focus {
-    text-decoration: underline;
+    text-decoration: none;
+    color: #ffffff;
 }
 
 /* Footer */
