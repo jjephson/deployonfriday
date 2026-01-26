@@ -8,7 +8,7 @@ export default defineConfig({
   // Change to '/deployonfriday/' if deploying to GitHub Pages without custom domain
   base: './',
   build: {
-    outDir: 'dist',
+    outDir: 'docs',
     assetsDir: 'assets'
   }
 })
