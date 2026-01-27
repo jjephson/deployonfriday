@@ -13,6 +13,18 @@
 </head>
 <body>
     <div id="app"></div>
+    <script>
+      (function (location) {
+        if (location.search[1] === '/') {
+          const decoded = location.search
+            .slice(1)
+            .split('&')
+            .map((segment) => segment.replace(/~and~/g, '&'))
+            .join('?')
+          window.history.replaceState(null, null, decoded)
+        }
+      })(window.location)
+    </script>
     <script type="module" src="/src/main.js"></script>
 </body>
 </html>

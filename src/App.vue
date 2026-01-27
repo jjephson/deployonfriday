@@ -4,7 +4,7 @@
     <header class="header">
       <nav class="nav" role="navigation" aria-label="Primary site navigation">
         <div class="nav-container">
-          <router-link to="/" class="logo" aria-label="Jimmie Jephson - Home">🚀 Jimmie</router-link>
+          <router-link to="/" class="logo" aria-label="Jimmie Jephson - Home">Deploy on Friday?</router-link>
           <div class="nav-actions">
             <ul class="nav-menu" role="menubar">
               <li role="none">

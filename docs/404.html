@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Page Not Found</title>
+  </head>
+  <body>
+    <script>
+      ;(function () {
+        const location = window.location
+        const base = location.origin
+        const path = location.pathname
+        const query = location.search.slice(1).replace(/&/g, '~and~')
+        const hash = location.hash
+        const redirect = `${base}/?/${path.slice(1)}${query ? `&${query}` : ''}${hash}`
+        window.location.replace(redirect)
+      })()
+    </script>
+  </body>
+</html>
