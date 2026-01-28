@@ -14,7 +14,8 @@ const routes = [
   { path: '/portfolio/frontend', redirect: '/en/portfolio/frontend' },
   { path: '/portfolio/scrum', redirect: '/en/portfolio/scrum' },
   { path: '/portfolio/game-industry', redirect: '/en/portfolio/game-industry' },
-  { path: '/portfolio/manager', redirect: '/en/portfolio/manager' },
+  { path: '/portfolio/manager', redirect: '/en/portfolio/accessibility' },
+  { path: '/portfolio/accessibility', redirect: '/en/portfolio/accessibility' },
   { path: '/projects', redirect: '/en/projects' },
   {
     path: '/:locale(en|sv)',
@@ -24,7 +25,8 @@ const routes = [
       { path: 'portfolio/frontend', component: FrontEndDevPage },
       { path: 'portfolio/scrum', component: ScrumMasterPage },
       { path: 'portfolio/game-industry', component: GameIndustryPage },
-      { path: 'portfolio/manager', component: ManagerPage },
+      { path: 'portfolio/manager', redirect: { path: 'portfolio/accessibility' } },
+      { path: 'portfolio/accessibility', component: ManagerPage },
       { path: 'projects', component: ProjectsPage }
     ]
   }

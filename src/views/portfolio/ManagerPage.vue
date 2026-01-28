@@ -19,81 +19,81 @@ export default {
     return {
       contentByLocale: {
         en: {
-          title: 'Manager',
-          subtitle: 'Leading teams to deliver reliable, user-focused products',
-          content: '<p>As a Manager, I lead development teams and drive technical strategy while ensuring projects are delivered on time and to the highest quality standards. My leadership style emphasizes empowerment, clear communication, and continuous improvement.</p><p>I\'ve managed teams ranging from small groups of 3-5 developers to larger cross-functional teams of 15+ members. My focus is on creating an environment where team members can grow, learn, and contribute their best work.</p><p>Beyond people management, I\'m involved in technical decision-making, architecture planning, and ensuring that our development practices align with business goals while maintaining high technical standards.</p>',
+          title: 'Accessibility Specialist',
+          subtitle: 'Ensuring inclusive experiences that work for everyone',
+          content: '<p>As an Accessibility Specialist, I help teams build digital products that meet WCAG standards and provide an inclusive experience for all users. I focus on practical improvements that balance user needs, design goals, and engineering constraints.</p><p>My work spans audits, remediation guidance, and hands-on collaboration with designers and developers. I translate accessibility requirements into clear, actionable steps that teams can implement quickly.</p><p>I also support long-term improvements through training, documentation, and design-system alignment so accessibility becomes a natural part of delivery.</p>',
           blocks: [
             {
-              title: 'Leadership',
-              content: 'Core leadership competencies',
+              title: 'Accessibility Audits',
+              content: 'Structured reviews and practical recommendations',
               items: [
-                'Team Building',
-                'Performance Management',
-                'Career Development',
-                'Strategic Planning',
-                'Change Management'
+                'WCAG 2.1/2.2 assessments',
+                'Issue prioritization',
+                'User journey analysis',
+                'Assistive tech testing',
+                'Actionable remediation plans'
               ]
             },
             {
-              title: 'Project Management',
-              content: 'Project delivery and coordination',
+              title: 'Inclusive Design',
+              content: 'Design guidance that supports all users',
               items: [
-                'Agile & Scrum',
-                'Resource Planning',
-                'Risk Management',
-                'Stakeholder Communication',
-                'Quality Assurance'
+                'Color contrast & typography',
+                'Focus states & keyboard flows',
+                'Semantic structure',
+                'Error handling & messaging',
+                'Accessible components'
               ]
             },
             {
-              title: 'Technical Management',
-              content: 'Technical leadership and strategy',
+              title: 'Team Enablement',
+              content: 'Building accessibility into day-to-day work',
               items: [
-                'Architecture Decisions',
-                'Code Reviews',
-                'Technical Standards',
-                'Tool Selection',
-                'Best Practices'
+                'Workshops & training',
+                'Design-system support',
+                'Definition of done',
+                'Review processes',
+                'Documentation & checklists'
               ]
             }
           ]
         },
         sv: {
-          title: 'Chef',
-          subtitle: 'Leder team som levererar stabila, användarfokuserade produkter',
-          content: '<p>Som chef leder jag utvecklingsteam och driver teknisk strategi samtidigt som jag säkerställer att projekt levereras i tid och med hög kvalitet. Mitt ledarskap bygger på tydlighet, ansvar och ständig förbättring.</p><p>Jag har lett allt från mindre team på 3–5 personer till större tvärfunktionella team med 15+ medarbetare. Mitt fokus är att skapa en miljö där människor kan växa och leverera sitt bästa.</p><p>Utöver personalledning arbetar jag med tekniska beslut, arkitekturplanering och att utvecklingsarbetet ligger i linje med affärsmål.</p>',
+          title: 'Tillgänglighetsspecialist',
+          subtitle: 'Skapar inkluderande upplevelser som fungerar för alla',
+          content: '<p>Som tillgänglighetsspecialist hjälper jag team att bygga digitala produkter som uppfyller WCAG och ger en inkluderande upplevelse för alla användare. Jag fokuserar på praktiska förbättringar som fungerar i verkliga projekt.</p><p>Mitt arbete omfattar granskningar, åtgärdsrekommendationer och nära samarbete med designers och utvecklare. Jag gör kraven tydliga och konkreta så att teamen snabbt kan implementera dem.</p><p>Jag stöttar också långsiktigt genom utbildning, dokumentation och arbete med designsystem så att tillgänglighet blir en naturlig del av leveransen.</p>',
           blocks: [
             {
-              title: 'Ledarskap',
-              content: 'Kärnkompetenser inom ledarskap',
+              title: 'Tillgänglighetsgranskningar',
+              content: 'Strukturerade granskningar och åtgärdsförslag',
               items: [
-                'Teambyggande',
-                'Prestationsledning',
-                'Kompetensutveckling',
-                'Strategisk planering',
-                'Förändringsledning'
+                'WCAG 2.1/2.2-bedömningar',
+                'Prioritering av problem',
+                'Analys av användarflöden',
+                'Test med hjälpmedel',
+                'Konkreta åtgärdsplaner'
               ]
             },
             {
-              title: 'Projektledning',
-              content: 'Leverans och koordinering',
+              title: 'Inkluderande design',
+              content: 'Designstöd som fungerar för alla',
               items: [
-                'Agilt & Scrum',
-                'Resursplanering',
-                'Riskhantering',
-                'Intressentkommunikation',
-                'Kvalitetssäkring'
+                'Färgkontrast & typografi',
+                'Fokus & tangentbordsflöden',
+                'Semantisk struktur',
+                'Felhantering & texter',
+                'Tillgängliga komponenter'
               ]
             },
             {
-              title: 'Tekniskt ledarskap',
-              content: 'Teknisk strategi och riktning',
+              title: 'Teamstöd',
+              content: 'Gör tillgänglighet till en del av vardagen',
               items: [
-                'Arkitekturbeslut',
-                'Kodgranskningar',
-                'Tekniska standarder',
-                'Verktygsval',
-                'Best practices'
+                'Workshops & utbildning',
+                'Stöd i designsystem',
+                'Definition of done',
+                'Granskningsrutiner',
+                'Dokumentation & checklistor'
               ]
             }
           ]

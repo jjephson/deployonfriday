@@ -17,7 +17,7 @@
                 <router-link :to="withLocale('/portfolio/game-industry')" class="nav-link" role="menuitem">{{ labels.game }}</router-link>
               </li>
               <li role="none">
-                <router-link :to="withLocale('/portfolio/manager')" class="nav-link" role="menuitem">{{ labels.manager }}</router-link>
+                <router-link :to="withLocale('/portfolio/manager')" class="nav-link" role="menuitem">{{ labels.accessibility }}</router-link>
               </li>
               <li role="none">
                 <router-link :to="withLocale('/projects')" class="nav-link" role="menuitem">{{ labels.projects }}</router-link>
@@ -63,19 +63,17 @@ export default {
     labels() {
       return this.locale === 'sv'
         ? {
-            home: 'Hem',
             frontend: 'Front End',
             scrum: 'Scrum Master',
             game: 'Spelbranschen',
-            manager: 'Chef',
+            accessibility: 'Tillgänglighet',
             projects: 'Projekt'
           }
         : {
-            home: 'Home',
             frontend: 'Front End Dev',
             scrum: 'Scrum Master',
             game: 'Game Industry',
-            manager: 'Manager',
+            accessibility: 'Accessibility',
             projects: 'Projects'
           }
     }
