@@ -20,7 +20,7 @@
               class="portfolio-block"
               :class="'portfolio-block-' + (index + 1)"
             >
-              <h3 class="block-title">{{ block.title }}</h3>
+            <h2 class="block-title">{{ block.title }}</h2>
               <p class="block-content">{{ block.content }}</p>
               <ul v-if="block.items" class="block-list">
                 <li v-for="(item, itemIndex) in block.items" :key="itemIndex">{{ item }}</li>

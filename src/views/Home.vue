@@ -2,17 +2,18 @@
   <div>
     <a href="#main" class="skip-link">Skip to main content</a>
     <main id="main" role="main">
+      <h1 class="section-title visually-hidden">{{ copy.homeTitle }}</h1>
       <section id="about" class="about" aria-labelledby="about-heading">
         <div class="container">
           <div class="about-content">
             <div class="about-text">
-              <h2 id="about-heading" class="section-title">About Me</h2>
-              <p>I’m Jimmie Jephson, an Accessibility Specialist and Senior Frontend Developer focused on inclusive, user-centered digital experiences.</p>
-              <p>I partner with teams to build accessible interfaces, improve usability, and ship reliable products for real-world users.</p>
+              <h2 id="about-heading" class="section-title">{{ copy.aboutTitle }}</h2>
+              <p>{{ copy.aboutIntro }}</p>
+              <p>{{ copy.aboutDetail }}</p>
             </div>
             <div class="about-image">
               <img src="/images/assets/jimmie.png" 
-                   alt="Jimmie Jephson - Professional headshot" 
+                   :alt="copy.aboutImageAlt" 
                    loading="lazy">
             </div>
           </div>
@@ -20,8 +21,8 @@
       </section>
       <section id="clients" class="clients" aria-labelledby="clients-heading">
         <div class="container">
-          <h2 id="clients-heading" class="section-title visually-hidden">Client Portfolio</h2>
-          <div class="clients-grid" role="list" aria-label="Client company logos">
+          <h2 id="clients-heading" class="section-title visually-hidden">{{ copy.clientsTitle }}</h2>
+          <div class="clients-grid" role="list" :aria-label="copy.clientsAria">
             <div class="client-logo" role="listitem" v-for="client in clients" :key="client.name">
               <img :src="client.image" :alt="client.name + ' logo'" loading="lazy">
             </div>
@@ -30,16 +31,16 @@
       </section>
       <section id="contact" class="contact" aria-labelledby="contact-heading">
         <div class="container">
-          <h2 id="contact-heading" class="section-title">Get In Touch</h2>
-          <p class="contact-text">Looking for an accessibility specialist and senior frontend developer for your next project? I'm available for consulting, full-time positions, and accessibility-focused development roles. Let's discuss how I can help create inclusive, user-centered digital experiences.</p>
-          <div class="contact-info" role="list" aria-label="Contact information">
+          <h2 id="contact-heading" class="section-title">{{ copy.contactTitle }}</h2>
+          <p class="contact-text">{{ copy.contactText }}</p>
+          <div class="contact-info" role="list" :aria-label="copy.contactAria">
             <div class="contact-item" role="listitem">
-              <h3>LinkedIn</h3>
-              <a href="https://linkedin.com/in/jimmiejephson" target="_blank" rel="noopener noreferrer" aria-label="Visit LinkedIn profile (opens in new tab)">linkedin.com/in/jimmiejephson</a>
+              <h3>{{ copy.linkedinTitle }}</h3>
+              <a href="https://linkedin.com/in/jimmiejephson" target="_blank" rel="noopener noreferrer" :aria-label="copy.linkedinAria">linkedin.com/in/jimmiejephson</a>
             </div>
             <div class="contact-item" role="listitem">
-              <h3>GitHub</h3>
-              <a href="https://github.com/jimmiejephson" target="_blank" rel="noopener noreferrer" aria-label="Visit GitHub profile (opens in new tab)">github.com/jimmiejephson</a>
+              <h3>{{ copy.githubTitle }}</h3>
+              <a href="https://github.com/jimmiejephson" target="_blank" rel="noopener noreferrer" :aria-label="copy.githubAria">github.com/jimmiejephson</a>
             </div>
           </div>
         </div>
@@ -53,6 +54,40 @@ export default {
   name: 'Home',
   data() {
     return {
+      contentByLocale: {
+        en: {
+          homeTitle: 'Deploy on Friday',
+          aboutTitle: 'About Me',
+          aboutIntro: 'I’m Jimmie Jephson, an Accessibility Specialist and Senior Frontend Developer focused on inclusive, user-centered digital experiences.',
+          aboutDetail: 'I partner with teams to build accessible interfaces, improve usability, and ship reliable products for real-world users.',
+          aboutImageAlt: 'Jimmie Jephson - Professional headshot',
+          clientsTitle: 'Client Portfolio',
+          clientsAria: 'Client company logos',
+          contactTitle: 'Get In Touch',
+          contactText: 'Looking for an accessibility specialist and senior frontend developer for your next project? I\'m available for consulting, full-time positions, and accessibility-focused development roles. Let\'s discuss how I can help create inclusive, user-centered digital experiences.',
+          contactAria: 'Contact information',
+          linkedinTitle: 'LinkedIn',
+          linkedinAria: 'Visit LinkedIn profile (opens in new tab)',
+          githubTitle: 'GitHub',
+          githubAria: 'Visit GitHub profile (opens in new tab)'
+        },
+        sv: {
+          homeTitle: 'Deploy on Friday',
+          aboutTitle: 'Om mig',
+          aboutIntro: 'Jag är Jimmie Jephson, tillgänglighetsspecialist och senior frontendutvecklare med fokus på inkluderande, användarcentrerade digitala upplevelser.',
+          aboutDetail: 'Jag hjälper team att bygga tillgängliga gränssnitt, förbättra användbarhet och leverera stabila produkter för verkliga användare.',
+          aboutImageAlt: 'Jimmie Jephson - Porträtt',
+          clientsTitle: 'Kundportfölj',
+          clientsAria: 'Kundlogotyper',
+          contactTitle: 'Kontakt',
+          contactText: 'Behöver du en tillgänglighetsspecialist och senior frontendutvecklare för ditt nästa projekt? Jag är tillgänglig för konsultuppdrag, heltidstjänster och roller med fokus på tillgänglighet. Hör av dig så pratar vi vidare.',
+          contactAria: 'Kontaktinformation',
+          linkedinTitle: 'LinkedIn',
+          linkedinAria: 'Besök min LinkedIn-profil (öppnas i ny flik)',
+          githubTitle: 'GitHub',
+          githubAria: 'Besök min GitHub-profil (öppnas i ny flik)'
+        }
+      },
       clients: [
         { name: 'Specsavers', image: '/images/specsavers.png' },
         { name: 'Polestar', image: '/images/polestar.png' },
@@ -79,6 +114,14 @@ export default {
         { name: 'NCS', image: '/images/ncs.png' },
         { name: 'Nobia', image: '/images/nobia.png' }
       ]
+    }
+  },
+  computed: {
+    locale() {
+      return this.$route.params.locale === 'sv' ? 'sv' : 'en'
+    },
+    copy() {
+      return this.contentByLocale[this.locale]
     }
   }
 }

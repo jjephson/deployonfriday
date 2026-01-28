@@ -185,20 +185,24 @@ a:focus {
 }
 
 /* Skip to main content link for screen readers */
-.skip-link {
+a.skip-link {
     position: absolute;
-    top: -40px;
+    top: 0;
     left: 6px;
     background: var(--accent-primary);
-    color: white;
+    color: #000000;
     padding: 8px;
     text-decoration: none;
     border-radius: 4px;
+    border: 2px solid #000000;
+    transform: translateY(-200%);
+    opacity: 0;
     z-index: 1000;
 }
 
 .skip-link:focus {
-    top: 6px;
+    transform: translateY(6px);
+    opacity: 1;
 }
 
 /* Container */
@@ -370,6 +374,34 @@ a:focus {
 
 .theme-toggle:hover,
 .theme-toggle:focus {
+    color: var(--accent-primary);
+}
+
+.locale-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.locale-toggle button {
+    border-radius: 999px;
+    border: 1px solid var(--border-color);
+    background: transparent;
+    color: var(--text-primary);
+    padding: 0.35rem 0.75rem;
+    font-weight: 600;
+    font-size: 0.85rem;
+    cursor: pointer;
+    min-height: 36px;
+}
+
+.locale-toggle button[aria-pressed="true"] {
+    background: var(--surface-card);
+    color: var(--accent-primary);
+}
+
+.locale-toggle button:hover,
+.locale-toggle button:focus {
     color: var(--accent-primary);
 }
 
