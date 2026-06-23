@@ -3,17 +3,17 @@
     <header class="page-hero">
       <div class="container">
         <p class="eyebrow">{{ copy.eyebrow }}</p>
-        <h1 id="page-heading" class="hero-title">{{ copy.title }}</h1>
+        <h1 class="hero-title">{{ copy.title }}</h1>
         <p class="hero-subtitle">{{ copy.subtitle }}</p>
-        <div class="pill-row" role="list" :aria-label="copy.standardsLabel">
-          <span v-for="std in copy.standards" :key="std" class="pill" role="listitem">{{ std }}</span>
-        </div>
+        <ul class="pill-row" :aria-label="copy.standardsLabel">
+          <li v-for="std in copy.standards" :key="std">{{ std }}</li>
+        </ul>
       </div>
     </header>
 
     <main id="main" class="page-content">
       <div class="container">
-        <div class="content-grid two-col">
+        <div class="content-grid">
           <div class="prose">
             <p>{{ copy.intro }}</p>
 
@@ -41,13 +41,13 @@
           </div>
 
           <aside aria-label="Accessibility topics">
-            <div class="info-card" style="margin-bottom: 1rem;">
+            <div class="info-card">
               <h3>{{ copy.testingTitle }}</h3>
               <ul>
                 <li v-for="item in copy.testingItems" :key="item">{{ item }}</li>
               </ul>
             </div>
-            <div class="info-card" style="margin-bottom: 1rem;">
+            <div class="info-card">
               <h3>{{ copy.areasTitle }}</h3>
               <ul>
                 <li v-for="item in copy.areasItems" :key="item">{{ item }}</li>
@@ -62,7 +62,7 @@
           </aside>
         </div>
 
-        <section class="cta-band" style="margin-top: 3rem; border-radius: var(--radius-xl);" aria-labelledby="a11y-cta">
+        <section class="cta-band" aria-labelledby="a11y-cta">
           <h2 id="a11y-cta" class="section-title">{{ copy.ctaTitle }}</h2>
           <p class="section-desc">{{ copy.ctaDesc }}</p>
           <router-link :to="withLocale('/contact')" class="btn btn-primary">{{ copy.ctaButton }}</router-link>
@@ -220,3 +220,184 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.page-hero {
+  padding: 4rem 0 3rem;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.375rem 0.875rem;
+  margin-bottom: 1.5rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--accent);
+  border: 1px solid hsl(43 50% 50% / 0.25);
+  border-radius: 999px;
+  background: var(--accent-glow);
+}
+
+.hero-title {
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1.08;
+  color: var(--ink);
+  margin-bottom: 1.25rem;
+}
+
+.hero-subtitle {
+  font-size: clamp(1rem, 2.5vw, 1.25rem);
+  color: var(--ink-dull);
+  max-width: 40rem;
+  line-height: 1.65;
+  font-weight: 400;
+}
+
+.page-content {
+  padding: 3rem 0 5rem;
+}
+
+.content-grid {
+  display: grid;
+  gap: 3rem;
+}
+
+@media (min-width: 768px) {
+  .content-grid {
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+  }
+}
+
+.prose {
+  color: var(--ink-dull);
+  font-size: 1rem;
+  line-height: 1.75;
+}
+
+.prose h2 {
+  font-size: 1.375rem;
+  font-weight: 600;
+  color: var(--ink);
+  margin: 2rem 0 0.75rem;
+  letter-spacing: -0.01em;
+}
+
+.prose h2:first-child {
+  margin-top: 0;
+}
+
+.prose p {
+  margin-bottom: 1rem;
+}
+
+.prose ul,
+.prose ol {
+  margin: 0 0 1rem 1.25rem;
+}
+
+.prose li {
+  margin-bottom: 0.375rem;
+}
+
+.prose a {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.info-card {
+  padding: 1.5rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+}
+
+.info-card + .info-card {
+  margin-top: 1rem;
+}
+
+.info-card h3 {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  color: var(--ink);
+}
+
+.info-card ul {
+  list-style: none;
+}
+
+.info-card li {
+  position: relative;
+  padding: 0.375rem 0 0.375rem 1rem;
+  font-size: 0.875rem;
+  color: var(--ink-dull);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.info-card li:last-child {
+  border-bottom: none;
+}
+
+.info-card li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.75rem;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+.pill-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 1rem 0 0;
+  list-style: none;
+}
+
+.pill-row li {
+  display: inline-flex;
+  padding: 0.375rem 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  font-family: var(--font-mono);
+  color: var(--ink-dull);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+}
+
+.cta-band {
+  margin-top: 3rem;
+  padding: 4rem 0;
+  text-align: center;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+}
+
+.section-title {
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  margin-bottom: 0.75rem;
+}
+
+.section-desc {
+  color: var(--ink-dull);
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  margin-bottom: 1.5rem;
+}
+</style>
