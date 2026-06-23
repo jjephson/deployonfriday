@@ -1,214 +1,83 @@
-# deployonfriday.dev Portfolio
+# deployonfriday.dev
 
-A modern, accessible portfolio website built with Vue.js 3 and Vite. Features dark/light mode support, responsive design, and WCAG 2.1 compliance.
+Accessibility audit and consulting site built with Vue 3 and Vite. Deployed to GitHub Pages at [deployonfriday.dev](https://deployonfriday.dev).
 
 ## Features
 
-- 🎨 Modern, clean design
-- 🌙 Dark/light mode support
-- 📱 Fully responsive
-- ♿ WCAG 2.1 AA compliant
-- 🚀 Fast loading with optimized assets
-- 🖨️ Print-friendly styles
-- 🎯 Reduced motion support
-- 🔍 High contrast mode support
-- ⚡ Built with Vue.js 3 and Vite
+- Landing page focused on accessibility audits and consulting
+- Accessibility information page (WCAG, EAA, audit process)
+- Contact form via [FormSubmit](https://formsubmit.co/) — no backend required
+- EN / SV locale support
+- WCAG 2.1 AA compliant markup and styling
 
-## Accessibility Features
+## Tech stack
 
-- Semantic HTML structure
-- Proper heading hierarchy
-- Alt text for all images
-- Keyboard navigation support
-- Focus indicators
-- Screen reader friendly
-- Color contrast compliance
-- Reduced motion support
-
-## Technologies Used
-
-- Vue.js 3
-- Vue Router 4
+- Vue 3 + Vue Router 4
 - Vite
-- HTML5
-- CSS3 (with CSS Grid and Flexbox)
-- Google Fonts (Inter)
+- GitHub Actions → GitHub Pages
 
-## Prerequisites
+## Local development
 
-- Node.js (v16 or higher)
-- npm or yarn
-
-## Local Development
-
-1. Clone the repository:
-```bash
-git clone https://github.com/yourusername/deployonfriday.git
-cd deployonfriday
-```
-
-2. Install dependencies:
 ```bash
 npm install
-```
-
-3. Start the development server:
-```bash
 npm run dev
 ```
 
-4. Visit `http://localhost:5173` in your browser
+Visit `http://localhost:5173`.
 
-The development server will automatically reload when you make changes to the code.
-
-## Building for Production
-
-To create a production build:
+## Build
 
 ```bash
 npm run build
 ```
 
-The built files will be in the `dist` directory.
-
-To preview the production build locally:
+Output goes to `docs/` (configured in `vite.config.js`).
 
 ```bash
 npm run preview
 ```
 
-## Project Structure
+## Project structure
 
 ```
 deployonfriday/
 ├── public/
-│   └── images/          # Static images (client logos, assets)
+│   ├── images/          # Client logos, logo.svg, 404.html, CNAME
+│   └── 404.html
 ├── src/
-│   ├── components/      # Vue components
-│   │   └── PortfolioPage.vue
-│   ├── views/           # Page components
+│   ├── components/
+│   │   └── ClientGrid.vue
+│   ├── data/
+│   │   └── clients.js
+│   ├── views/
 │   │   ├── Home.vue
-│   │   ├── ProjectsPage.vue
-│   │   └── portfolio/
-│   │       ├── FrontEndDevPage.vue
-│   │       ├── ScrumMasterPage.vue
-│   │       ├── GameIndustryPage.vue
-│   │       └── ManagerPage.vue
-│   ├── App.vue          # Root component
-│   ├── main.js          # Application entry point
-│   ├── router.js        # Vue Router configuration
-│   └── styles.css       # Global styles
-├── index.html           # HTML template
-├── vite.config.js       # Vite configuration
-└── package.json         # Dependencies and scripts
+│   │   ├── AccessibilityPage.vue
+│   │   └── ContactPage.vue
+│   ├── App.vue
+│   ├── main.js
+│   ├── router.js
+│   └── styles.css
+├── index.html
+└── vite.config.js
 ```
-
-## GitHub Pages Deployment
-
-### Automatic Deployment (Already Configured)
-
-The project is set up with GitHub Actions to automatically build and deploy on every push to the `main` branch.
-
-**How it works:**
-1. Push your code to GitHub:
-```bash
-git add .
-git commit -m "Your changes"
-git push origin main
-```
-
-2. GitHub Actions will automatically:
-   - Install dependencies
-   - Build the Vue.js project
-   - Deploy to GitHub Pages
-
-3. Your site will be live at `https://deployonfriday.dev` (or your GitHub Pages URL)
-
-**To enable GitHub Pages:**
-1. Go to your repository on GitHub
-2. Navigate to **Settings** → **Pages**
-3. Under **Source**, select **GitHub Actions**
-4. The workflow will run automatically on each push
-
-**Note:** The first deployment may take a few minutes. Subsequent deployments are faster.
-
-### Manual Deployment (Alternative)
-
-If you prefer to build locally before pushing:
-
-1. Build the project:
-```bash
-npm run build
-```
-
-2. The `dist` folder contains the built files ready for deployment
 
 ## Customization
 
-### Colors and Theming
+- **Home page copy & packages**: `src/views/Home.vue`
+- **Accessibility page**: `src/views/AccessibilityPage.vue`
+- **Contact form**: `src/views/ContactPage.vue` (FormSubmit email in form `action`)
+- **Navigation & footer**: `src/App.vue`
+- **Client logos**: `src/data/clients.js` and images in `public/images/`
+- **Design tokens**: `src/styles.css`
 
-The site uses CSS custom properties for easy theming. Edit the `:root` variables in `src/styles.css`:
+## Deployment
 
-```css
-:root {
-    --bg-primary: #ffffff;
-    --bg-secondary: #f8fafc;
-    --accent-primary: #3b82f6;
-    /* ... other variables */
-}
-```
+Pushing to `main` triggers the GitHub Actions workflow, which builds the site and publishes the `docs/` folder to GitHub Pages.
 
-### Content Updates
+## Contact form setup
 
-- **Home page**: Edit `src/views/Home.vue`
-- **Portfolio pages**: Edit files in `src/views/portfolio/`
-- **Projects page**: Edit `src/views/ProjectsPage.vue`
-- **Navigation**: Edit `src/App.vue`
-- **Client logos**: Update the `clients` array in `src/views/Home.vue`
-
-### Adding New Portfolio Pages
-
-1. Create a new component in `src/views/portfolio/YourPage.vue`
-2. Use the `PortfolioPage` component as a template
-3. Add a route in `src/router.js`
-4. Add a navigation link in `src/App.vue`
-
-### Images
-
-- Place static images in `public/images/`
-- Reference them in components using `/images/filename.png`
-- The images folder structure is preserved in the build
-
-## Browser Support
-
-- Chrome 60+
-- Firefox 55+
-- Safari 12+
-- Edge 79+
-
-## Performance
-
-The site is optimized for performance with:
-- Vite for fast development and optimized builds
-- Code splitting via Vue Router
-- Lazy loading for images
-- Efficient CSS Grid and Flexbox layouts
-- Minimal JavaScript bundle size
-
-## Scripts
-
-- `npm run dev` - Start development server
-- `npm run build` - Build for production
-- `npm run preview` - Preview production build locally
-
-## License
-
-This project is open source and available under the [MIT License](LICENSE).
-
-## Contributing
-
-Feel free to submit issues and enhancement requests!
+On first use, FormSubmit sends a confirmation email to the address in the form action. Click the activation link once; after that, submissions are delivered normally.
 
 ---
 
-Built with ❤️ for deployonfriday.dev
+Built for deployonfriday.dev

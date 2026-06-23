@@ -1,48 +1,77 @@
 <template>
-  <div>
-    <a href="#main" class="skip-link">Skip to main content</a>
-    <header class="header">
-      <nav class="nav" role="navigation" aria-label="Primary site navigation">
-        <div class="nav-container">
-          <router-link :to="withLocale('/')" class="logo" aria-label="Jimmie Jephson - Home">Deploy on Friday?</router-link>
+  <div id="app-root">
+    <a href="#main" class="skip-link">{{ labels.skipLink }}</a>
+
+    <header class="site-header">
+      <div class="container site-header-inner">
+        <router-link :to="withLocale('/')" class="logo-link" :aria-label="labels.logoAria">
+          <img src="/images/logo.svg" alt="" width="32" height="32">
+          <span class="logo-text">Deploy on Friday</span>
+        </router-link>
+
+        <nav class="site-nav" :aria-label="labels.navAria">
+          <ul class="nav-list" role="list">
+            <li role="none">
+              <router-link :to="withLocale('/')" class="nav-link" role="menuitem">{{ labels.home }}</router-link>
+            </li>
+            <li role="none">
+              <router-link :to="withLocale('/accessibility')" class="nav-link" role="menuitem">{{ labels.accessibility }}</router-link>
+            </li>
+            <li role="none">
+              <router-link :to="withLocale('/contact')" class="nav-link" role="menuitem">{{ labels.contact }}</router-link>
+            </li>
+          </ul>
+
           <div class="nav-actions">
-            <ul class="nav-menu" role="menubar">
-              <li role="none">
-                <router-link :to="withLocale('/portfolio/frontend')" class="nav-link" role="menuitem">{{ labels.frontend }}</router-link>
-              </li>
-              <li role="none">
-                <router-link :to="withLocale('/portfolio/scrum')" class="nav-link" role="menuitem">{{ labels.scrum }}</router-link>
-              </li>
-              <li role="none">
-                <router-link :to="withLocale('/portfolio/game-industry')" class="nav-link" role="menuitem">{{ labels.game }}</router-link>
-              </li>
-              <li role="none">
-                <router-link :to="withLocale('/portfolio/manager')" class="nav-link" role="menuitem">{{ labels.accessibility }}</router-link>
-              </li>
-              <li role="none">
-                <router-link :to="withLocale('/projects')" class="nav-link" role="menuitem">{{ labels.projects }}</router-link>
-              </li>
-            </ul>
-            <div class="locale-toggle" role="group" aria-label="Language">
+            <div class="locale-toggle" role="group" :aria-label="labels.language">
               <button type="button" :aria-pressed="locale === 'en'" @click="switchLocale('en')">EN</button>
               <button type="button" :aria-pressed="locale === 'sv'" @click="switchLocale('sv')">SV</button>
             </div>
+            <router-link :to="withLocale('/contact')" class="btn btn-primary nav-cta">{{ labels.cta }}</router-link>
             <button
-              class="theme-toggle"
               type="button"
-              :aria-pressed="isLight"
-              @click="toggleTheme"
+              class="mobile-menu-btn"
+              :aria-expanded="mobileOpen"
+              :aria-controls="mobileOpen ? 'mobile-nav' : undefined"
+              :aria-label="mobileOpen ? labels.closeMenu : labels.openMenu"
+              @click="mobileOpen = !mobileOpen"
             >
-              {{ isLight ? 'Dark mode' : 'Light mode' }}
+              {{ mobileOpen ? '✕' : '☰' }}
             </button>
           </div>
-        </div>
+        </nav>
+      </div>
+
+      <nav v-if="mobileOpen" id="mobile-nav" class="mobile-nav" :aria-label="labels.navAria">
+        <router-link :to="withLocale('/')" class="nav-link" @click="mobileOpen = false">{{ labels.home }}</router-link>
+        <router-link :to="withLocale('/accessibility')" class="nav-link" @click="mobileOpen = false">{{ labels.accessibility }}</router-link>
+        <router-link :to="withLocale('/contact')" class="nav-link" @click="mobileOpen = false">{{ labels.contact }}</router-link>
       </nav>
     </header>
+
     <router-view></router-view>
-    <footer class="footer">
-      <div class="container">
-        <p>&copy; 2024 deployonfriday.dev. All rights reserved.</p>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <div class="footer-brand">
+          <img src="/images/logo.svg" alt="" width="24" height="24">
+          <span>Deploy on Friday — Accessibility audits</span>
+        </div>
+        <ul class="footer-links" role="list">
+          <li role="none">
+            <router-link :to="withLocale('/accessibility')">{{ labels.accessibility }}</router-link>
+          </li>
+          <li role="none">
+            <router-link :to="withLocale('/contact')">{{ labels.contact }}</router-link>
+          </li>
+          <li role="none">
+            <a href="https://linkedin.com/in/jimmiejephson" target="_blank" rel="noopener noreferrer">
+              LinkedIn
+              <span class="visually-hidden"> (opens in new tab)</span>
+            </a>
+          </li>
+        </ul>
+        <p class="footer-copy">&copy; {{ year }} deployonfriday.dev</p>
       </div>
     </footer>
   </div>
@@ -53,7 +82,8 @@ export default {
   name: 'App',
   data() {
     return {
-      isLight: false
+      mobileOpen: false,
+      year: new Date().getFullYear()
     }
   },
   computed: {
@@ -63,53 +93,64 @@ export default {
     labels() {
       return this.locale === 'sv'
         ? {
-            frontend: 'Front End',
-            scrum: 'Scrum Master',
-            game: 'Spelbranschen',
+            skipLink: 'Hoppa till huvudinnehåll',
+            logoAria: 'Deploy on Friday — startsida',
+            navAria: 'Primär navigering',
+            language: 'Språk',
+            home: 'Hem',
             accessibility: 'Tillgänglighet',
-            projects: 'Projekt'
+            contact: 'Kontakt',
+            cta: 'Boka granskning',
+            openMenu: 'Öppna meny',
+            closeMenu: 'Stäng meny'
           }
         : {
-            frontend: 'Front End Dev',
-            scrum: 'Scrum Master',
-            game: 'Game Industry',
+            skipLink: 'Skip to main content',
+            logoAria: 'Deploy on Friday — home',
+            navAria: 'Primary navigation',
+            language: 'Language',
+            home: 'Home',
             accessibility: 'Accessibility',
-            projects: 'Projects'
+            contact: 'Contact',
+            cta: 'Book audit',
+            openMenu: 'Open menu',
+            closeMenu: 'Close menu'
           }
     }
   },
-  mounted() {
-    const savedTheme = localStorage.getItem('theme')
-    this.isLight = savedTheme === 'light'
-    this.applyTheme()
+  watch: {
+    $route() {
+      this.mobileOpen = false
+    }
   },
   methods: {
     withLocale(path) {
       const base = `/${this.locale}`
-      if (!path || path === '/') {
-        return base
-      }
+      if (!path || path === '/') return base
       return `${base}${path.startsWith('/') ? path : `/${path}`}`
     },
     switchLocale(target) {
-      if (target === this.locale) {
-        return
-      }
+      if (target === this.locale) return
       const currentPath = this.$route.path
       const nextPath = currentPath.match(/^\/(en|sv)(\/|$)/)
         ? currentPath.replace(/^\/(en|sv)/, `/${target}`)
         : `/${target}`
       this.$router.push(nextPath)
-    },
-    toggleTheme() {
-      this.isLight = !this.isLight
-      this.applyTheme()
-      localStorage.setItem('theme', this.isLight ? 'light' : 'dark')
-    },
-    applyTheme() {
-      document.body.classList.toggle('theme-light', this.isLight)
-      document.body.classList.toggle('theme-dark', !this.isLight)
     }
   }
 }
 </script>
+
+<style scoped>
+.nav-cta {
+  display: none;
+  padding: 0.5rem 1rem;
+  font-size: 0.8125rem;
+}
+
+@media (min-width: 768px) {
+  .nav-cta {
+    display: inline-flex;
+  }
+}
+</style>

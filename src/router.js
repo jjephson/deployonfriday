@@ -1,40 +1,48 @@
 import { createRouter, createWebHistory, RouterView } from 'vue-router'
 import { h } from 'vue'
 import Home from './views/Home.vue'
-import FrontEndDevPage from './views/portfolio/FrontEndDevPage.vue'
-import ScrumMasterPage from './views/portfolio/ScrumMasterPage.vue'
-import GameIndustryPage from './views/portfolio/GameIndustryPage.vue'
-import ManagerPage from './views/portfolio/ManagerPage.vue'
-import ProjectsPage from './views/ProjectsPage.vue'
+import AccessibilityPage from './views/AccessibilityPage.vue'
+import ContactPage from './views/ContactPage.vue'
 
 const LocaleLayout = { render: () => h(RouterView) }
 
 const routes = [
   { path: '/', redirect: '/en' },
-  { path: '/portfolio/frontend', redirect: '/en/portfolio/frontend' },
-  { path: '/portfolio/scrum', redirect: '/en/portfolio/scrum' },
-  { path: '/portfolio/game-industry', redirect: '/en/portfolio/game-industry' },
-  { path: '/portfolio/manager', redirect: '/en/portfolio/accessibility' },
-  { path: '/portfolio/accessibility', redirect: '/en/portfolio/accessibility' },
-  { path: '/projects', redirect: '/en/projects' },
+  { path: '/accessibility', redirect: '/en/accessibility' },
+  { path: '/contact', redirect: '/en/contact' },
+  // Legacy redirects
+  { path: '/portfolio/frontend', redirect: '/en' },
+  { path: '/portfolio/scrum', redirect: '/en' },
+  { path: '/portfolio/game-industry', redirect: '/en' },
+  { path: '/portfolio/manager', redirect: '/en/accessibility' },
+  { path: '/portfolio/accessibility', redirect: '/en/accessibility' },
+  { path: '/projects', redirect: '/en' },
   {
     path: '/:locale(en|sv)',
     component: LocaleLayout,
     children: [
       { path: '', component: Home },
-      { path: 'portfolio/frontend', component: FrontEndDevPage },
-      { path: 'portfolio/scrum', component: ScrumMasterPage },
-      { path: 'portfolio/game-industry', component: GameIndustryPage },
-      { path: 'portfolio/manager', redirect: { path: 'portfolio/accessibility' } },
-      { path: 'portfolio/accessibility', component: ManagerPage },
-      { path: 'projects', component: ProjectsPage }
+      { path: 'accessibility', component: AccessibilityPage },
+      { path: 'contact', component: ContactPage },
+      // Legacy locale redirects
+      { path: 'portfolio/frontend', redirect: { path: '' } },
+      { path: 'portfolio/scrum', redirect: { path: '' } },
+      { path: 'portfolio/game-industry', redirect: { path: '' } },
+      { path: 'portfolio/manager', redirect: { path: 'accessibility' } },
+      { path: 'portfolio/accessibility', redirect: { path: 'accessibility' } },
+      { path: 'projects', redirect: { path: '' } }
     ]
   }
 ]
 
 const router = createRouter({
   history: createWebHistory(),
-  routes
+  routes,
+  scrollBehavior(to, from, savedPosition) {
+    if (savedPosition) return savedPosition
+    if (to.hash) return { el: to.hash, behavior: 'smooth' }
+    return { top: 0 }
+  }
 })
 
 export default router
