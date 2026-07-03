@@ -9,7 +9,6 @@
           <router-link :to="withLocale('/contact')" class="btn btn-primary">{{ copy.ctaPrimary }}</router-link>
           <router-link :to="withLocale('/accessibility')" class="btn btn-secondary">{{ copy.ctaSecondary }}</router-link>
         </div>
-        <p class="hero-note">{{ copy.heroNote }}</p>
       </div>
     </section>
 
@@ -26,7 +25,7 @@
 
     <section class="section" aria-labelledby="services-heading">
       <div class="container">
-        <header class="section-header">
+        <header class="section-header section-header--wide">
           <p class="section-eyebrow">{{ copy.servicesEyebrow }}</p>
           <h2 id="services-heading" class="section-title">{{ copy.servicesTitle }}</h2>
           <p class="section-desc">{{ copy.servicesDesc }}</p>
@@ -69,7 +68,7 @@
       </div>
     </section>
 
-    <section class="section" aria-labelledby="clients-heading">
+    <section v-if="showTrustedBySection" class="section" aria-labelledby="clients-heading">
       <div class="container">
         <header class="section-header">
           <p class="section-eyebrow">{{ copy.clientsEyebrow }}</p>
@@ -113,14 +112,14 @@ export default {
   },
   data() {
     return {
+      showTrustedBySection: false,
       contentByLocale: {
         en: {
           eyebrow: 'Accessibility audits & consulting',
-          heroTitle: 'Ship with confidence.',
-          heroSubtitle: 'Professional WCAG audits, remediation plans, and ongoing accessibility support — helping teams build inclusive products that improve with every release.',
+          heroTitle: 'Inclusive experiences, by design.',
+          heroSubtitle: 'Professional WCAG audits, practical remediation plans, and ongoing accessibility support helping teams create inclusive digital experiences that stand the test of time.',
           ctaPrimary: 'Book an audit',
           ctaSecondary: 'Learn about accessibility',
-          heroNote: 'WCAG 2.2 · EAA · EN 301 549 · Assistive technology testing',
           statsTitle: 'Key figures',
           stats: [
             { value: '24+', label: 'Enterprise clients' },
@@ -129,8 +128,8 @@ export default {
             { value: '100%', label: 'Actionable reports' }
           ],
           servicesEyebrow: 'What you get',
-          servicesTitle: 'Accessibility expertise, zero compromise',
-          servicesDesc: 'Everything you need to understand accessibility gaps, prioritize fixes, and build inclusive products — with clear guidance your team can act on.',
+          servicesTitle: 'Accessibility expertise that makes a difference.',
+          servicesDesc: 'Everything you need to understand accessibility gaps, prioritize fixes, and build inclusive products with clear, actionable guidance your team can put into practice.',
           features: [
             { icon: '◎', title: 'Structured WCAG Audits', desc: 'Manual testing against WCAG 2.1/2.2 AA with keyboard, screen reader, and visual checks across key user journeys.' },
             { icon: '▣', title: 'Prioritized Remediation', desc: 'Issues ranked by user impact and effort. No endless spreadsheets — just a plan your team can ship.' },
@@ -173,11 +172,10 @@ export default {
         },
         sv: {
           eyebrow: 'Tillgänglighetsgranskningar & rådgivning',
-          heroTitle: 'Leverera tryggt.',
-          heroSubtitle: 'Professionella WCAG-granskningar, åtgärdsplaner och löpande tillgänglighetsstöd — så att team bygger inkluderande produkter som blir bättre för varje release.',
+          heroTitle: 'Inkluderande upplevelser från grunden.',
+          heroSubtitle: 'Professionella WCAG-granskningar, konkreta åtgärdsplaner och löpande stöd inom tillgänglighet som hjälper team att skapa inkluderande digitala upplevelser som håller över tid.',
           ctaPrimary: 'Boka granskning',
           ctaSecondary: 'Läs om tillgänglighet',
-          heroNote: 'WCAG 2.2 · EAA · EN 301 549 · Test med hjälpmedel',
           statsTitle: 'Nyckeltal',
           stats: [
             { value: '24+', label: 'Företagskunder' },
@@ -186,8 +184,8 @@ export default {
             { value: '100%', label: 'Handlingsbara rapporter' }
           ],
           servicesEyebrow: 'Det du får',
-          servicesTitle: 'Tillgänglighetsexpertis, inga kompromisser',
-          servicesDesc: 'Allt du behöver för att förstå tillgänglighetsbrister, prioritera åtgärder och bygga inkluderande produkter — med tydlig vägledning som teamet kan agera på.',
+          servicesTitle: 'Expertis inom tillgänglighet som gör skillnad.',
+          servicesDesc: 'Allt du behöver för att förstå brister i tillgängligheten, prioritera rätt åtgärder och bygga inkluderande produkter med tydlig och konkret vägledning som ditt team kan omsätta i praktiken.',
           features: [
             { icon: '◎', title: 'Strukturerade WCAG-granskningar', desc: 'Manuell testning mot WCAG 2.1/2.2 AA med tangentbord, skärmläsare och visuella kontroller av viktiga användarflöden.' },
             { icon: '▣', title: 'Prioriterade åtgärder', desc: 'Problem rangordnade efter användarpåverkan och insats. Inga oändliga kalkylblad — bara en plan teamet kan leverera.' },
@@ -269,7 +267,7 @@ export default {
   line-height: 1.08;
   color: var(--ink);
   margin-bottom: 1.25rem;
-  max-width: 18ch;
+  max-width: 28ch;
   margin-left: auto;
   margin-right: auto;
 }
@@ -277,7 +275,7 @@ export default {
 .hero-subtitle {
   font-size: clamp(1rem, 2.5vw, 1.25rem);
   color: var(--ink-dull);
-  max-width: 42rem;
+  max-width: 48rem;
   margin: 0 auto 2rem;
   line-height: 1.65;
   font-weight: 400;
@@ -291,12 +289,6 @@ export default {
   margin-bottom: 1rem;
 }
 
-.hero-note {
-  font-size: 0.8125rem;
-  color: var(--ink-dull);
-  margin-top: 1rem;
-}
-
 .section {
   padding: 5rem 0;
   border-top: 1px solid var(--border-subtle);
@@ -306,6 +298,10 @@ export default {
   text-align: center;
   max-width: 40rem;
   margin: 0 auto 3rem;
+}
+
+.section-header--wide {
+  max-width: 52rem;
 }
 
 .section-eyebrow {
