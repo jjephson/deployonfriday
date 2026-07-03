@@ -37,8 +37,12 @@
 }
 
 html {
-  scroll-behavior: smooth;
+  scroll-behavior: auto;
   font-size: 16px;
+}
+
+#main {
+  scroll-margin-top: var(--header-height);
 }
 
 body {

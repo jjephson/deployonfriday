@@ -9,6 +9,18 @@ export default defineConfig({
   base: './',
   build: {
     outDir: 'docs',
-    assetsDir: 'assets'
+    assetsDir: 'assets',
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          'vue-vendor': ['vue', 'vue-router']
+        }
+      }
+    }
+  },
+  preview: {
+    headers: {
+      'Cache-Control': 'public, max-age=600'
+    }
   }
 })

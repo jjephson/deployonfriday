@@ -90,11 +90,13 @@
 </template>
 
 <script>
-import ClientGrid from '../components/ClientGrid.vue'
+import { defineAsyncComponent } from 'vue'
 
 export default {
   name: 'Home',
-  components: { ClientGrid },
+  components: {
+    ClientGrid: defineAsyncComponent(() => import('../components/ClientGrid.vue'))
+  },
   computed: {
     locale() {
       return this.$route.params.locale === 'sv' ? 'sv' : 'en'

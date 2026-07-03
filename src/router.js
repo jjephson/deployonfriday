@@ -1,8 +1,9 @@
 import { createRouter, createWebHistory, RouterView } from 'vue-router'
 import { h } from 'vue'
 import Home from './views/Home.vue'
-import AccessibilityPage from './views/AccessibilityPage.vue'
-import ContactPage from './views/ContactPage.vue'
+
+const AccessibilityPage = () => import('./views/AccessibilityPage.vue')
+const ContactPage = () => import('./views/ContactPage.vue')
 
 const LocaleLayout = { render: () => h(RouterView) }
 
@@ -37,12 +38,28 @@ const routes = [
 
 const router = createRouter({
   history: createWebHistory(),
-  routes,
-  scrollBehavior(to, from, savedPosition) {
-    if (savedPosition) return savedPosition
-    if (to.hash) return { el: to.hash, behavior: 'smooth' }
-    return { top: 0 }
+  routes
+})
+
+// No scrollBehavior — vue-router would set history.scrollRestoration = 'manual', which
+// blocks back/forward cache. Scroll to top only on forward navigations (links, push).
+let fromPopstate = false
+
+window.addEventListener('popstate', () => {
+  fromPopstate = true
+})
+
+router.afterEach(() => {
+  if (fromPopstate) {
+    fromPopstate = false
+    return
   }
+
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      window.scrollTo(0, 0)
+    })
+  })
 })
 
 export default router
