@@ -31,7 +31,6 @@
               <button type="button" class="locale-btn" :aria-pressed="locale === 'en'" @click="switchLocale('en')">EN</button>
               <button type="button" class="locale-btn" :aria-pressed="locale === 'sv'" @click="switchLocale('sv')">SV</button>
             </div>
-            <router-link :to="withLocale('/contact')" class="btn btn-primary nav-cta">{{ labels.cta }}</router-link>
             <button
               type="button"
               class="mobile-menu-btn"
@@ -110,7 +109,6 @@ export default {
             home: 'Hem',
             accessibility: 'Tillgänglighet',
             contact: 'Kontakt',
-            cta: 'Boka granskning',
             openMenu: 'Öppna meny',
             closeMenu: 'Stäng meny'
           }
@@ -125,7 +123,6 @@ export default {
             home: 'Home',
             accessibility: 'Accessibility',
             contact: 'Contact',
-            cta: 'Book audit',
             openMenu: 'Open menu',
             closeMenu: 'Close menu'
           }
@@ -161,7 +158,7 @@ export default {
       const nextPath = currentPath.match(/^\/(en|sv)(\/|$)/)
         ? currentPath.replace(/^\/(en|sv)/, `/${target}`)
         : `/${target}`
-      this.$router.push(nextPath)
+      this.$router.replace(nextPath)
     },
     switchTheme(target) {
       if (target === this.theme) return
@@ -289,6 +286,23 @@ export default {
   box-shadow: inset 0 0 0 1px var(--accent-border-subtle);
 }
 
+@media (min-width: 768px) {
+  .nav-list li:nth-child(1) .nav-link {
+    min-width: 3.5rem;
+    justify-content: center;
+  }
+
+  .nav-list li:nth-child(2) .nav-link {
+    min-width: 9.5rem;
+    justify-content: center;
+  }
+
+  .nav-list li:nth-child(3) .nav-link {
+    min-width: 4.75rem;
+    justify-content: center;
+  }
+}
+
 .nav-actions {
   display: flex;
   align-items: center;
@@ -337,23 +351,15 @@ export default {
   color: var(--on-accent-deep);
 }
 
+.theme-toggle .locale-btn {
+  min-width: 2.85rem;
+}
+
 .locale-btn:focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 0;
   position: relative;
   z-index: 1;
-}
-
-.nav-cta {
-  display: none;
-  padding: 0.5rem 1rem;
-  font-size: 0.8125rem;
-}
-
-@media (min-width: 768px) {
-  .nav-cta {
-    display: inline-flex;
-  }
 }
 
 .mobile-menu-btn {

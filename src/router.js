@@ -45,15 +45,23 @@ const router = createRouter({
 // blocks back/forward cache. Scroll to top only on forward navigations (links, push).
 let fromPopstate = false
 
+function stripLocale(path) {
+  const stripped = path.replace(/^\/(en|sv)(?=\/|$)/, '')
+  return stripped || '/'
+}
+
 window.addEventListener('popstate', () => {
   fromPopstate = true
 })
 
-router.afterEach(() => {
+router.afterEach((to, from) => {
   if (fromPopstate) {
     fromPopstate = false
     return
   }
+
+  // Keep scroll position when switching language on the same page.
+  if (stripLocale(to.path) === stripLocale(from.path)) return
 
   requestAnimationFrame(() => {
     requestAnimationFrame(() => {
