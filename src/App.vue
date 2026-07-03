@@ -23,6 +23,10 @@
           </ul>
 
           <div class="nav-actions">
+            <div class="theme-toggle" role="group" :aria-label="labels.theme">
+              <button type="button" class="locale-btn" :aria-pressed="theme === 'light'" @click="switchTheme('light')">{{ labels.light }}</button>
+              <button type="button" class="locale-btn" :aria-pressed="theme === 'dark'" @click="switchTheme('dark')">{{ labels.dark }}</button>
+            </div>
             <div class="locale-toggle" role="group" :aria-label="labels.language">
               <button type="button" class="locale-btn" :aria-pressed="locale === 'en'" @click="switchLocale('en')">EN</button>
               <button type="button" class="locale-btn" :aria-pressed="locale === 'sv'" @click="switchLocale('sv')">SV</button>
@@ -78,12 +82,15 @@
 </template>
 
 <script>
+import { getEffectiveTheme, setTheme } from './theme'
+
 export default {
   name: 'App',
   data() {
     return {
       mobileOpen: false,
-      year: new Date().getFullYear()
+      year: new Date().getFullYear(),
+      theme: getEffectiveTheme()
     }
   },
   computed: {
@@ -97,6 +104,9 @@ export default {
             logoAria: 'Deploy on Friday — startsida',
             navAria: 'Primär navigering',
             language: 'Språk',
+            theme: 'Färgtema',
+            light: 'Ljust',
+            dark: 'Mörkt',
             home: 'Hem',
             accessibility: 'Tillgänglighet',
             contact: 'Kontakt',
@@ -109,6 +119,9 @@ export default {
             logoAria: 'Deploy on Friday — home',
             navAria: 'Primary navigation',
             language: 'Language',
+            theme: 'Color theme',
+            light: 'Light',
+            dark: 'Dark',
             home: 'Home',
             accessibility: 'Accessibility',
             contact: 'Contact',
@@ -116,6 +129,19 @@ export default {
             openMenu: 'Open menu',
             closeMenu: 'Close menu'
           }
+    }
+  },
+  mounted() {
+    this._themeMedia = window.matchMedia('(prefers-color-scheme: dark)')
+    this._onSystemThemeChange = (event) => {
+      const stored = localStorage.getItem('deployonfriday-theme')
+      if (!stored) this.theme = event.matches ? 'dark' : 'light'
+    }
+    this._themeMedia.addEventListener('change', this._onSystemThemeChange)
+  },
+  beforeUnmount() {
+    if (this._themeMedia && this._onSystemThemeChange) {
+      this._themeMedia.removeEventListener('change', this._onSystemThemeChange)
     }
   },
   watch: {
@@ -136,6 +162,11 @@ export default {
         ? currentPath.replace(/^\/(en|sv)/, `/${target}`)
         : `/${target}`
       this.$router.push(nextPath)
+    },
+    switchTheme(target) {
+      if (target === this.theme) return
+      setTheme(target)
+      this.theme = target
     }
   }
 }
@@ -167,7 +198,7 @@ export default {
   z-index: 100;
   height: var(--header-height);
   border-bottom: 1px solid var(--border);
-  background: hsl(220 14% 4% / 0.85);
+  background: var(--header-bg);
   backdrop-filter: blur(16px) saturate(150%);
   -webkit-backdrop-filter: blur(16px) saturate(150%);
 }
@@ -262,7 +293,8 @@ export default {
   gap: 0.5rem;
 }
 
-.locale-toggle {
+.locale-toggle,
+.theme-toggle {
   display: inline-flex;
   gap: 2px;
   padding: 2px;

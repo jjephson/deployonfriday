@@ -1,4 +1,16 @@
 :root {
+  --radius: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.25rem;
+  --font-sans: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+  --container: 72rem;
+  --header-height: 4rem;
+}
+
+[data-theme='dark'] {
+  color-scheme: dark;
+
   --bg: hsl(220 14% 4%);
   --bg-card: hsl(220 12% 7%);
   --bg-elevated: hsl(220 12% 10%);
@@ -6,9 +18,11 @@
   --ink: hsl(220 16% 96%);
   --ink-dull: hsl(220 8% 58%);
   --ink-faint: hsl(220 6% 40%);
+  --ink-hover: hsl(220 16% 90%);
   --accent: hsl(215 75% 62%);
   --accent-deep: hsl(215 75% 40%);
   --accent-deep-hover: hsl(215 75% 44%);
+  --on-accent-deep: hsl(220 16% 96%);
   --accent-glow: hsl(215 75% 62% / 0.12);
   --accent-border-subtle: hsl(215 70% 55% / 0.25);
   --accent-border: hsl(215 70% 55% / 0.4);
@@ -17,15 +31,43 @@
   --accent-deep-border: hsl(215 70% 50% / 0.55);
   --border: hsl(220 10% 13%);
   --border-subtle: hsl(220 10% 10%);
-  --radius: 0.75rem;
-  --radius-lg: 1rem;
-  --radius-xl: 1.25rem;
+  --border-hover: hsl(220 10% 18%);
+  --header-bg: hsl(220 14% 4% / 0.85);
+  --body-glow-accent: hsl(215 70% 55% / 0.06);
+  --body-glow-ink: hsl(220 16% 96% / 0.03);
   --shadow: 0 1px 2px hsl(0 0% 0% / 0.4);
   --shadow-lg: 0 8px 32px hsl(0 0% 0% / 0.35);
-  --font-sans: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
-  --container: 72rem;
-  --header-height: 4rem;
+}
+
+[data-theme='light'] {
+  color-scheme: light;
+
+  --bg: hsl(220 30% 97%);
+  --bg-card: hsl(0 0% 100%);
+  --bg-elevated: hsl(220 22% 94%);
+  --bg-hover: hsl(220 18% 91%);
+  --ink: hsl(222 30% 14%);
+  --ink-dull: hsl(220 12% 38%);
+  --ink-faint: hsl(220 10% 52%);
+  --ink-hover: hsl(222 30% 22%);
+  --accent: hsl(215 85% 36%);
+  --accent-deep: hsl(215 80% 42%);
+  --accent-deep-hover: hsl(215 80% 38%);
+  --on-accent-deep: hsl(0 0% 100%);
+  --accent-glow: hsl(215 85% 36% / 0.1);
+  --accent-border-subtle: hsl(215 70% 40% / 0.2);
+  --accent-border: hsl(215 70% 40% / 0.35);
+  --accent-border-strong: hsl(215 70% 40% / 0.45);
+  --accent-subtle: hsl(215 70% 40% / 0.08);
+  --accent-deep-border: hsl(215 75% 35% / 0.45);
+  --border: hsl(220 14% 86%);
+  --border-subtle: hsl(220 14% 90%);
+  --border-hover: hsl(220 14% 78%);
+  --header-bg: hsl(220 30% 97% / 0.85);
+  --body-glow-accent: hsl(215 70% 40% / 0.07);
+  --body-glow-ink: hsl(215 70% 40% / 0.04);
+  --shadow: 0 1px 2px hsl(220 30% 20% / 0.08);
+  --shadow-lg: 0 8px 32px hsl(220 30% 20% / 0.12);
 }
 
 *,
@@ -53,6 +95,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
+  transition: background 0.2s ease, color 0.2s ease;
 }
 
 body::before {
@@ -60,8 +103,8 @@ body::before {
   position: fixed;
   inset: 0;
   background:
-    radial-gradient(ellipse 80% 50% at 50% -20%, var(--accent-subtle), transparent),
-    radial-gradient(ellipse 60% 40% at 100% 0%, hsl(220 16% 96% / 0.03), transparent);
+    radial-gradient(ellipse 80% 50% at 50% -20%, var(--body-glow-accent), transparent),
+    radial-gradient(ellipse 60% 40% at 100% 0%, var(--body-glow-ink), transparent);
   pointer-events: none;
   z-index: 0;
 }
@@ -140,7 +183,7 @@ a:focus-visible {
 
 .btn-primary:hover,
 .btn-primary:focus-visible {
-  background: hsl(220 16% 90%);
+  background: var(--ink-hover);
   color: var(--bg);
 }
 
@@ -154,19 +197,19 @@ a:focus-visible {
 .btn-secondary:focus-visible {
   background: var(--bg-hover);
   color: var(--ink);
-  border-color: hsl(220 10% 18%);
+  border-color: var(--border-hover);
 }
 
 .btn-accent {
   background: var(--accent-deep);
-  color: var(--ink);
+  color: var(--on-accent-deep);
   border-color: var(--accent-deep-border);
 }
 
 .btn-accent:hover,
 .btn-accent:focus-visible {
   background: var(--accent-deep-hover);
-  color: var(--ink);
+  color: var(--on-accent-deep);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -180,12 +223,22 @@ a:focus-visible {
   html {
     scroll-behavior: auto;
   }
+
+  body {
+    transition: none;
+  }
 }
 
 @media (prefers-contrast: more) {
-  :root {
+  [data-theme='dark'] {
     --border: hsl(220 16% 96%);
     --ink-dull: hsl(220 16% 85%);
+  }
+
+  [data-theme='light'] {
+    --border: hsl(222 30% 14%);
+    --ink-dull: hsl(222 30% 20%);
+    --accent: hsl(215 90% 28%);
   }
 }
 

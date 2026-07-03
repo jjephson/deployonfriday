@@ -356,7 +356,7 @@ export default {
 }
 
 .feature-card:hover {
-  border-color: hsl(220 10% 18%);
+  border-color: var(--border-hover);
 }
 
 .feature-icon {

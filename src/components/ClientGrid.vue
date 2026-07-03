@@ -63,7 +63,7 @@ export default {
 }
 
 .client-card:hover .client-card-inner {
-  border-color: hsl(220 10% 20%);
+  border-color: var(--border-hover);
 }
 
 .client-logo-surface {
