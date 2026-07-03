@@ -134,11 +134,11 @@ export default {
           servicesDesc: 'Everything you need to understand accessibility gaps, prioritize fixes, and build inclusive products with clear, actionable guidance your team can put into practice.',
           features: [
             { icon: '◎', title: 'Structured WCAG Audits', desc: 'Manual testing against WCAG 2.1/2.2 AA with keyboard, screen reader, and visual checks across key user journeys.' },
-            { icon: '▣', title: 'Prioritized Remediation', desc: 'Issues ranked by user impact and effort. No endless spreadsheets — just a plan your team can ship.' },
-            { icon: '⬡', title: 'Assistive Tech Testing', desc: 'Real-world validation with NVDA, VoiceOver, and JAWS so findings reflect how users actually experience your product.' },
-            { icon: '◈', title: 'Design System Support', desc: 'Accessible component patterns, focus states, and contrast guidance that scales across your product.' },
-            { icon: '⎋', title: 'Team Workshops', desc: 'Practical training for designers and developers so accessibility becomes part of everyday delivery.' },
-            { icon: '⏱', title: 'Fast Turnaround', desc: 'Clear timelines and deliverables. Most audits completed within two weeks of kickoff.' }
+            { icon: '▣', title: 'Prioritized Remediation', desc: 'Issues ranked by user impact and effort, with a clear, actionable plan your team can ship.' },
+            { icon: '⬡', title: 'Assistive Tech Testing', desc: 'Real-world validation VoiceOver so findings reflect how users actually experience your product.' },
+            { icon: '◈', title: 'Quick Wins', desc: 'High-impact improvements that require relatively little effort.' },
+            { icon: '⎋', title: 'Team Walkthrough', desc: 'A guided presentation of the findings, helping designers and developers understand key issues and recommendations.' },
+            { icon: '⏱', title: 'Fast Turnaround', desc: 'Clear timelines and deliverables. A focused process that moves quickly from kickoff to actionable insights.' }
           ],
           packagesEyebrow: 'Audit packages',
           packagesTitle: 'Pick the right depth for your product',
@@ -190,11 +190,11 @@ export default {
           servicesDesc: 'Allt du behöver för att förstå brister i tillgängligheten, prioritera rätt åtgärder och bygga inkluderande produkter med tydlig och konkret vägledning som ditt team kan omsätta i praktiken.',
           features: [
             { icon: '◎', title: 'Strukturerade WCAG-granskningar', desc: 'Manuell testning mot WCAG 2.1/2.2 AA med tangentbord, skärmläsare och visuella kontroller av viktiga användarflöden.' },
-            { icon: '▣', title: 'Prioriterade åtgärder', desc: 'Problem rangordnade efter användarpåverkan och insats. Inga oändliga kalkylblad — bara en plan teamet kan leverera.' },
-            { icon: '⬡', title: 'Test med hjälpmedel', desc: 'Validering med NVDA, VoiceOver och JAWS så att fynden speglar hur användare faktiskt upplever produkten.' },
-            { icon: '◈', title: 'Stöd i designsystem', desc: 'Tillgängliga komponentmönster, fokustillstånd och kontrastvägledning som skalar över produkten.' },
-            { icon: '⎋', title: 'Teamworkshops', desc: 'Praktisk utbildning för designers och utvecklare så att tillgänglighet blir en del av vardagen.' },
-            { icon: '⏱', title: 'Snabb leverans', desc: 'Tydliga tidsplaner och leveranser. De flesta granskningar klara inom två veckor efter start.' }
+            { icon: '▣', title: 'Prioriterade åtgärder', desc: 'Problem prioriterade efter användarpåverkan och arbetsinsats, med en plan som ditt team kan genomföra.' },
+            { icon: '⬡', title: 'Test med hjälpmedel', desc: 'Validering med bland annat, VoiceOver så att fynden speglar hur användare faktiskt upplever produkten.' },
+            { icon: '◈', title: 'Snabba vinster', desc: 'Förbättringar med stor effekt som kräver relativt liten insats.' },
+            { icon: '⎋', title: 'Genomgång med teamet', desc: 'En guidad presentation av resultaten som hjälper designers och utvecklare att förstå de viktigaste problemen och rekommendationerna.' },
+            { icon: '⏱', title: 'Snabb leverans', desc: 'Tydliga tidsramar och leverabler. En effektiv process som snabbt tar dig från uppstart till handlingsbara insikter.' }
           ],
           packagesEyebrow: 'Granskningspaket',
           packagesTitle: 'Välj rätt djup för din produkt',
