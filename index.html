@@ -11,6 +11,18 @@
     <link rel="icon" type="image/svg+xml" href="./images/logo.svg">
     <script>
       (function () {
+        var storageKey = 'deployonfriday-theme'
+        var stored = localStorage.getItem(storageKey)
+        var systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches
+        var theme = stored === 'light' || stored === 'dark' ? stored : (systemDark ? 'dark' : 'light')
+        document.documentElement.dataset.theme = theme
+
+        var meta = document.querySelector('meta[name="theme-color"]')
+        if (meta) meta.content = theme === 'dark' ? '#090a0c' : '#f3f4f6'
+      })()
+    </script>
+    <script>
+      (function () {
         var analyticsLoaded = false
 
         function loadAnalytics() {
@@ -36,9 +48,9 @@
         }
       })()
     </script>
-  <script type="module" crossorigin src="./assets/index-DbL2Sx3o.js"></script>
+  <script type="module" crossorigin src="./assets/index-TBsTr-GF.js"></script>
   <link rel="modulepreload" crossorigin href="./assets/vue-vendor-D7wwHUrW.js">
-  <link rel="stylesheet" crossorigin href="./assets/index-D1c_3tqt.css">
+  <link rel="stylesheet" crossorigin href="./assets/index-C89WYQoE.css">
 </head>
 <body>
     <div id="app"></div>
