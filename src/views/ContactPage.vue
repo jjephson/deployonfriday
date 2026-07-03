@@ -224,7 +224,7 @@ export default {
   letter-spacing: 0.04em;
   text-transform: uppercase;
   color: var(--accent);
-  border: 1px solid hsl(43 50% 50% / 0.25);
+  border: 1px solid var(--accent-border-subtle);
   border-radius: 999px;
   background: var(--accent-glow);
 }
@@ -343,7 +343,7 @@ export default {
 .form-group input:focus-visible,
 .form-group select:focus-visible,
 .form-group textarea:focus-visible {
-  border-color: hsl(43 50% 50% / 0.5);
+  border-color: var(--accent-border-strong);
   outline: none;
   box-shadow: 0 0 0 2px var(--accent-glow);
 }

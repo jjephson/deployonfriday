@@ -63,7 +63,7 @@ export default {
 }
 
 .client-card:hover .client-card-inner {
-  border-color: hsl(30 4% 20%);
+  border-color: hsl(220 10% 20%);
 }
 
 .client-logo-surface {
@@ -73,7 +73,7 @@ export default {
   width: 100%;
   height: 100%;
   padding: 0.625rem;
-  background: hsl(30 10% 94%);
+  background: var(--ink);
   border-radius: calc(var(--radius-lg) - 4px);
 }
 

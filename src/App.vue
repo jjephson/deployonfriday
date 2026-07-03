@@ -167,7 +167,7 @@ export default {
   z-index: 100;
   height: var(--header-height);
   border-bottom: 1px solid var(--border);
-  background: hsl(30 4% 4% / 0.85);
+  background: hsl(220 14% 4% / 0.85);
   backdrop-filter: blur(16px) saturate(150%);
   -webkit-backdrop-filter: blur(16px) saturate(150%);
 }

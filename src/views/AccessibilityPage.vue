@@ -238,7 +238,7 @@ export default {
   letter-spacing: 0.04em;
   text-transform: uppercase;
   color: var(--accent);
-  border: 1px solid hsl(43 50% 50% / 0.25);
+  border: 1px solid var(--accent-border-subtle);
   border-radius: 999px;
   background: var(--accent-glow);
 }

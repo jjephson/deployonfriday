@@ -168,7 +168,7 @@ export default {
           clientsDesc: 'I have worked with leading Swedish and international brands across retail, automotive, finance, and media.',
           clientsAria: 'Client company logos',
           ctaTitle: 'Ready to make your product accessible?',
-          ctaDesc: 'Tell me about your product and timeline. I will respond within two business days.'
+          ctaDesc: 'Every project is different. Tell us about yours, and we will help you build a more inclusive digital experience.'
         },
         sv: {
           eyebrow: 'Tillgänglighetsgranskningar & rådgivning',
@@ -224,7 +224,7 @@ export default {
           clientsDesc: 'Jag har arbetat med ledande svenska och internationella varumärken inom retail, automotive, finans och media.',
           clientsAria: 'Kundlogotyper',
           ctaTitle: 'Redo att göra er produkt tillgänglig?',
-          ctaDesc: 'Berätta om er produkt och tidsplan. Jag svarar inom två arbetsdagar.'
+          ctaDesc: 'Alla projekt är olika. Berätta om ert, så hjälper vi er att skapa en mer inkluderande digital upplevelse.'
         }
       }
     }
@@ -255,7 +255,7 @@ export default {
   letter-spacing: 0.04em;
   text-transform: uppercase;
   color: var(--accent);
-  border: 1px solid hsl(43 50% 50% / 0.25);
+  border: 1px solid var(--accent-border-subtle);
   border-radius: 999px;
   background: var(--accent-glow);
 }
@@ -354,7 +354,7 @@ export default {
 }
 
 .feature-card:hover {
-  border-color: hsl(30 4% 18%);
+  border-color: hsl(220 10% 18%);
 }
 
 .feature-icon {
@@ -409,8 +409,8 @@ export default {
 }
 
 .pricing-card.featured {
-  border-color: hsl(43 50% 50% / 0.4);
-  background: linear-gradient(180deg, hsl(43 50% 50% / 0.06) 0%, var(--bg-card) 40%);
+  border-color: var(--accent-border);
+  background: linear-gradient(180deg, var(--accent-subtle) 0%, var(--bg-card) 40%);
 }
 
 .pricing-badge {
