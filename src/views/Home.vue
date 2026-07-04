@@ -76,6 +76,23 @@
             </router-link>
           </article>
         </div>
+
+        <aside class="extras-panel" aria-labelledby="extras-heading">
+          <div class="extras-header">
+            <p class="section-eyebrow">{{ copy.extrasEyebrow }}</p>
+            <h3 id="extras-heading" class="extras-title">{{ copy.extrasTitle }}</h3>
+            <p class="extras-desc">{{ copy.extrasDesc }}</p>
+          </div>
+          <ul class="extras-list">
+            <li v-for="item in copy.extras" :key="item">
+              <span class="extras-item-marker" aria-hidden="true"></span>
+              <span>{{ item }}</span>
+            </li>
+          </ul>
+          <div class="extras-action">
+            <router-link :to="withLocale('/contact')" class="btn btn-accent extras-cta">{{ copy.extrasCta }}</router-link>
+          </div>
+        </aside>
       </div>
     </section>
 
@@ -179,6 +196,15 @@ export default {
               featured: false
             }
           ],
+          extrasEyebrow: 'Beyond the packages',
+          extrasTitle: 'Additional services',
+          extrasDesc: 'Need something tailored? I also offer standalone support outside the audit packages.',
+          extras: [
+            'Acceptance testing',
+            'Accessibility statements',
+            'Consultation, hourly'
+          ],
+          extrasCta: 'Discuss your needs',
           clientsEyebrow: 'Trusted by',
           clientsTitle: 'Teams who ship inclusive products',
           clientsDesc: 'I have worked with leading Swedish and international brands across retail, automotive, finance, and media.',
@@ -238,6 +264,15 @@ export default {
               featured: false
             }
           ],
+          extrasEyebrow: 'Utöver paketen',
+          extrasTitle: 'Övriga tjänster',
+          extrasDesc: 'Behöver ni något mer skräddarsytt? Jag erbjuder även separata tjänster utöver granskningspaketen.',
+          extras: [
+            'Acceptanstest',
+            'Tillgänglighetsdeklarationer',
+            'Rådgivning per timme'
+          ],
+          extrasCta: 'Hör av er',
           clientsEyebrow: 'Förtroende från',
           clientsTitle: 'Team som levererar inkluderande produkter',
           clientsDesc: 'Jag har arbetat med ledande svenska och internationella varumärken inom retail, automotive, finans och media.',
@@ -537,6 +572,85 @@ export default {
 
 .pricing-card .btn {
   width: 100%;
+}
+
+.extras-panel {
+  position: relative;
+  margin-top: 3rem;
+  padding: 2.5rem 2rem;
+  text-align: center;
+  background: linear-gradient(160deg, var(--accent-glow) 0%, var(--bg-card) 45%, var(--bg-card) 100%);
+  border: 1px solid var(--accent-border);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-lg);
+}
+
+.extras-header {
+  max-width: 40rem;
+  margin: 0 auto 1.75rem;
+}
+
+.extras-title {
+  font-size: clamp(1.35rem, 3vw, 1.75rem);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  margin-bottom: 0.625rem;
+}
+
+.extras-desc {
+  font-size: 1rem;
+  color: var(--ink-dull);
+  line-height: 1.65;
+}
+
+.extras-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.75rem;
+  margin-bottom: 1.75rem;
+  list-style: none;
+  text-align: left;
+}
+
+@media (min-width: 640px) {
+  .extras-list {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.extras-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 1.125rem 1.25rem;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--ink);
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
+}
+
+.extras-item-marker {
+  flex-shrink: 0;
+  width: 0.5rem;
+  height: 0.5rem;
+  margin-top: 0.45rem;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-glow);
+}
+
+.extras-action {
+  display: flex;
+  justify-content: center;
+}
+
+.extras-cta {
+  min-width: 12rem;
 }
 
 .stats-row {
