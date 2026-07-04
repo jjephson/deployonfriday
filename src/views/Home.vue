@@ -56,6 +56,17 @@
           >
             <span v-if="pkg.badge" class="pricing-badge">{{ pkg.badge }}</span>
             <h3>{{ pkg.name }}</h3>
+            <div class="pricing-price">
+              <span class="pricing-price-tag">{{ pkg.price.tag }}</span>
+              <p class="pricing-price-value" :aria-label="pkg.price.label">
+                <template v-if="pkg.price.currencyBefore">
+                  <span class="pricing-price-symbol">{{ pkg.price.currency }}</span><span class="pricing-price-amount">{{ pkg.price.amount }}</span>
+                </template>
+                <template v-else>
+                  <span class="pricing-price-amount">{{ pkg.price.amount }}</span><span class="pricing-price-symbol pricing-price-symbol--suffix">{{ pkg.price.currency }}</span>
+                </template>
+              </p>
+            </div>
             <p class="pricing-desc">{{ pkg.desc }}</p>
             <ul class="pricing-list">
               <li v-for="item in pkg.items" :key="item">{{ item }}</li>
@@ -146,22 +157,25 @@ export default {
           packageCta: 'Get started',
           packages: [
             {
-              name: 'Snapshot',
-              desc: 'A focused review of your most critical flows — ideal before a launch or redesign.',
+              name: 'Small',
+              price: { tag: 'EUR', amount: '1,900', currency: '€', currencyBefore: true, label: '€1,900' },
+              desc: 'A quick check focused on your most critical user flows ideal before a launch or redesign.',
               items: ['Up to 5 key pages/flows', 'WCAG 2.2 AA checklist', 'Keyboard & screen reader pass', 'Priority issue list', '30-min debrief call'],
               featured: false
             },
             {
-              name: 'Full Audit',
+              name: 'Medium',
               badge: 'Most popular',
-              desc: 'Comprehensive coverage for products preparing for EAA compliance or a major release.',
-              items: ['Full site or app review', 'WCAG 2.2 AA + best practices', 'Multi assistive tech testing', 'Detailed remediation plan', '60-min team walkthrough'],
+              price: { tag: 'EUR', amount: '4,900', currency: '€', currencyBefore: true, label: '€4,900' },
+              desc: 'A bigger audit covering more of your product with the same rigorous testing approach.',
+              items: ['Expanded coverage of key pages and flows', 'WCAG 2.2 AA checklist', 'Keyboard & screen reader pass', 'Priority issue list', '60-min debrief call'],
               featured: true
             },
             {
-              name: 'Ongoing',
-              desc: 'Embedded support for teams building accessibility into their delivery process.',
-              items: ['Monthly review cycles', 'PR/design review support', 'Design system guidance', 'Team training sessions', 'Slack or async support'],
+              name: 'Large',
+              price: { tag: 'EUR', amount: '6,900', currency: '€', currencyBefore: true, label: '€6,900' },
+              desc: 'A full audit for complete coverage suited to EAA compliance or a major release.',
+              items: ['Full site or app review', 'WCAG 2.2 AA checklist', 'Keyboard & screen reader pass', 'Priority issue list', '60-min debrief call'],
               featured: false
             }
           ],
@@ -202,22 +216,25 @@ export default {
           packageCta: 'Kom igång',
           packages: [
             {
-              name: 'Snapshot',
-              desc: 'En fokuserad granskning av dina viktigaste flöden — perfekt före lansering eller redesign.',
-              items: ['Upp till 5 sidor/flöden', 'WCAG 2.2 AA-checklista', 'Tangentbord & skärmläsare', 'Prioriterad problemlista', '30 min genomgång'],
+              name: 'Liten',
+              price: { tag: 'SEK', amount: '19 000', currency: 'kr', currencyBefore: false, label: '19 000 kr' },
+              desc: 'En snabb kontroll fokuserad på era viktigaste användarflöden perfekt före lansering eller redesign.',
+              items: ['Upp till 5 viktiga sidor/flöden', 'WCAG 2.2 AA-checklista', 'Tangentbord & skärmläsare', 'Prioriterad problemlista', '30 min genomgång'],
               featured: false
             },
             {
-              name: 'Full granskning',
+              name: 'Medium',
               badge: 'Populärast',
-              desc: 'Heltäckande granskning för produkter som förbereder EAA-efterlevnad eller större release.',
-              items: ['Hela webbplats eller app', 'WCAG 2.2 AA + best practice', 'Test med flera hjälpmedel', 'Detaljerad åtgärdsplan', '60 min teamgenomgång'],
+              price: { tag: 'SEK', amount: '49 000', currency: 'kr', currencyBefore: false, label: '49 000 kr' },
+              desc: 'En större granskning som täcker mer av produkten med samma noggranna testning.',
+              items: ['Utökad granskning av viktiga sidor och flöden', 'WCAG 2.2 AA-checklista', 'Tangentbord & skärmläsare', 'Prioriterad problemlista', '60 min genomgång'],
               featured: true
             },
             {
-              name: 'Löpande',
-              desc: 'Inbäddat stöd för team som bygger in tillgänglighet i sin leveransprocess.',
-              items: ['Månatliga granskningscykler', 'Stöd i PR/designreview', 'Designsystemvägledning', 'Teamutbildning', 'Slack eller async-stöd'],
+              name: 'Stor',
+              price: { tag: 'SEK', amount: '69 000', currency: 'kr', currencyBefore: false, label: '69 000 kr' },
+              desc: 'En fullständig granskning för heltäckande coverage lämpad för EAA-efterlevnad eller större lansering.',
+              items: ['Hela webbplatsen eller appen', 'WCAG 2.2 AA-checklista', 'Tangentbord & skärmläsare', 'Prioriterad problemlista', '60 min genomgång'],
               featured: false
             }
           ],
@@ -393,6 +410,7 @@ export default {
   gap: 1rem;
   max-width: 56rem;
   margin: 0 auto;
+  padding-top: 0.875rem;
 }
 
 @media (min-width: 768px) {
@@ -402,6 +420,7 @@ export default {
 }
 
 .pricing-card {
+  position: relative;
   display: flex;
   flex-direction: column;
   padding: 1.75rem;
@@ -416,19 +435,77 @@ export default {
 }
 
 .pricing-badge {
-  display: inline-block;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin: 0;
+  padding: 0.375rem 0.75rem;
   font-size: 0.6875rem;
   font-weight: 600;
   letter-spacing: 0.05em;
   text-transform: uppercase;
-  color: var(--accent);
-  margin-bottom: 0.75rem;
+  color: var(--on-accent-deep);
+  background: var(--accent-deep);
+  border-radius: 999px;
+  white-space: nowrap;
 }
 
 .pricing-card h3 {
   font-size: 1.125rem;
   font-weight: 600;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.25rem;
+}
+
+.pricing-price {
+  margin-bottom: 1rem;
+  padding: 0.875rem 0;
+}
+
+.pricing-card.featured .pricing-price {
+  padding: 0.875rem 1rem;
+  background: var(--accent-glow);
+  border-radius: var(--radius-lg);
+}
+
+.pricing-price-tag {
+  display: block;
+  margin-bottom: 0.375rem;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.pricing-price-value {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0.125rem;
+  margin: 0;
+  line-height: 1;
+}
+
+.pricing-price-amount {
+  font-size: 2.75rem;
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink);
+}
+
+.pricing-price-symbol {
+  font-size: 1.625rem;
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.pricing-price-symbol--suffix {
+  margin-left: 0.3rem;
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--ink-dull);
 }
 
 .pricing-desc {
