@@ -21,15 +21,18 @@
   --ink-faint: hsl(220 10% 55%);
   --ink-hover: hsl(220 16% 90%);
   --accent: hsl(215 75% 62%);
-  --accent-deep: hsl(215 75% 52%);
-  --accent-deep-hover: hsl(215 75% 56%);
-  --on-accent-deep: hsl(220 16% 96%);
+  --accent-deep: hsl(215 70% 40%);
+  --accent-deep-hover: hsl(215 70% 44%);
+  --on-accent-deep: hsl(0 0% 100%);
   --accent-glow: hsl(215 75% 62% / 0.12);
-  --accent-border-subtle: hsl(215 70% 55% / 0.25);
-  --accent-border: hsl(215 70% 55% / 0.4);
-  --accent-border-strong: hsl(215 70% 55% / 0.5);
-  --accent-subtle: hsl(215 70% 55% / 0.06);
-  --accent-deep-border: hsl(215 70% 62% / 0.65);
+  --accent-soft-bg: hsl(215 45% 20%);
+  --accent-soft-fg: hsl(215 75% 88%);
+  --accent-soft-border: hsl(215 55% 48%);
+  --accent-border-subtle: hsl(215 55% 44%);
+  --accent-border: hsl(215 55% 48%);
+  --accent-border-strong: hsl(215 55% 55%);
+  --accent-subtle: hsl(215 45% 20%);
+  --accent-deep-border: hsl(215 55% 55%);
   --control-active-bg: hsl(215 70% 40%);
   --control-active-fg: hsl(0 0% 100%);
   --control-active-hover: hsl(215 70% 44%);
@@ -37,7 +40,7 @@
   --nav-active-fg: hsl(215 75% 88%);
   --nav-active-border: hsl(215 55% 48%);
   --border: hsl(220 14% 42%);
-  --border-subtle: hsl(220 12% 24%);
+  --border-subtle: hsl(220 12% 40%);
   --border-hover: hsl(220 14% 50%);
   --header-bg: hsl(220 14% 4% / 0.85);
   --body-glow-accent: hsl(215 70% 55% / 0.06);
@@ -62,9 +65,12 @@
   --accent-deep-hover: hsl(215 80% 38%);
   --on-accent-deep: hsl(0 0% 100%);
   --accent-glow: hsl(215 85% 36% / 0.1);
-  --accent-border-subtle: hsl(215 70% 40% / 0.2);
-  --accent-border: hsl(215 70% 40% / 0.35);
-  --accent-border-strong: hsl(215 70% 40% / 0.45);
+  --accent-soft-bg: hsl(215 50% 94%);
+  --accent-soft-fg: hsl(215 85% 28%);
+  --accent-soft-border: hsl(215 55% 42%);
+  --accent-border-subtle: hsl(215 55% 42%);
+  --accent-border: hsl(215 55% 38%);
+  --accent-border-strong: hsl(215 55% 32%);
   --accent-subtle: hsl(215 70% 40% / 0.08);
   --accent-deep-border: hsl(215 75% 35% / 0.45);
   --control-active-bg: hsl(215 80% 38%);
@@ -155,6 +161,31 @@ main {
   border: 0 !important;
 }
 
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.375rem 0.875rem;
+  margin-bottom: 1.5rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--accent-soft-fg);
+  border: 1px solid var(--accent-soft-border);
+  border-radius: 999px;
+  background: var(--accent-soft-bg);
+}
+
+.section-eyebrow {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--accent-soft-fg);
+  margin-bottom: 0.75rem;
+}
+
 .container {
   width: 100%;
   max-width: var(--container);
@@ -214,15 +245,15 @@ a:focus-visible {
 }
 
 .btn-accent {
-  background: var(--accent-deep);
-  color: var(--on-accent-deep);
-  border-color: var(--accent-deep-border);
+  background: var(--control-active-bg);
+  color: var(--control-active-fg);
+  border-color: var(--accent-soft-border);
 }
 
 .btn-accent:hover,
 .btn-accent:focus-visible {
-  background: var(--accent-deep-hover);
-  color: var(--on-accent-deep);
+  background: var(--control-active-hover);
+  color: var(--control-active-fg);
 }
 
 .btn:disabled {
@@ -237,9 +268,9 @@ a:focus-visible {
 }
 
 .btn-accent:disabled {
-  background: var(--accent-deep);
-  border-color: var(--accent-deep-border);
-  color: var(--on-accent-deep);
+  background: var(--control-active-bg);
+  border-color: var(--accent-soft-border);
+  color: var(--control-active-fg);
   opacity: 0.85;
 }
 

@@ -79,7 +79,7 @@
               <li v-for="item in pkg.items" :key="item">{{ item }}</li>
             </ul>
             <router-link :to="contactLinkForPackage(pkg)" class="btn" :class="pkg.featured ? 'btn-accent' : 'btn-secondary'">
-              {{ copy.packageCta }}
+              {{ pkg.cta }}
             </router-link>
           </article>
         </div>
@@ -184,11 +184,11 @@ export default {
           packagesEyebrow: 'Audit packages',
           packagesTitle: 'Pick the right depth for your product',
           packagesDesc: 'Every package includes a written report, issue prioritization, and a walkthrough call. Custom scopes available on request.',
-          packageCta: 'Get started',
           packages: [
             {
               name: 'Small',
               serviceSlug: 'small',
+              cta: 'Book Small audit',
               price: { tag: 'EUR', amount: '1,900', currency: '€', currencyBefore: true, label: '€1,900' },
               desc: 'A quick check focused on your most critical user flows ideal before a launch or redesign.',
               items: ['Up to 5 key pages/flows', 'WCAG 2.2 AA checklist', 'Keyboard & screen reader pass', 'Priority issue list', '30-min debrief call'],
@@ -197,6 +197,7 @@ export default {
             {
               name: 'Medium',
               serviceSlug: 'medium',
+              cta: 'Book Medium audit',
               badge: 'Most popular',
               price: { tag: 'EUR', amount: '4,900', currency: '€', currencyBefore: true, label: '€4,900' },
               desc: 'A bigger audit covering more of your product with the same rigorous testing approach.',
@@ -206,6 +207,7 @@ export default {
             {
               name: 'Large',
               serviceSlug: 'large',
+              cta: 'Book Large audit',
               price: { tag: 'EUR', amount: '6,900', currency: '€', currencyBefore: true, label: '€6,900' },
               desc: 'A full audit for complete coverage suited to EAA compliance or a major release.',
               items: ['Full site or app review', 'WCAG 2.2 AA checklist', 'Keyboard & screen reader pass', 'Priority issue list', '60-min debrief call'],
@@ -255,11 +257,11 @@ export default {
           packagesEyebrow: 'Granskningspaket',
           packagesTitle: 'Välj rätt djup för din produkt',
           packagesDesc: 'Varje paket inkluderar skriftlig rapport, prioritering av problem och ett genomgångssamtal. Anpassade scope på begäran.',
-          packageCta: 'Kom igång',
           packages: [
             {
               name: 'Liten',
               serviceSlug: 'small',
+              cta: 'Boka Liten granskning',
               price: { tag: 'SEK', amount: '19 000', currency: 'kr', currencyBefore: false, label: '19 000 kr' },
               desc: 'En snabb kontroll fokuserad på era viktigaste användarflöden perfekt före lansering eller redesign.',
               items: ['Upp till 5 viktiga sidor/flöden', 'WCAG 2.2 AA-checklista', 'Tangentbord & skärmläsare', 'Prioriterad problemlista', '30 min genomgång'],
@@ -268,6 +270,7 @@ export default {
             {
               name: 'Medium',
               serviceSlug: 'medium',
+              cta: 'Boka Medium granskning',
               badge: 'Populärast',
               price: { tag: 'SEK', amount: '49 000', currency: 'kr', currencyBefore: false, label: '49 000 kr' },
               desc: 'En större granskning som täcker mer av produkten med samma noggranna testning.',
@@ -277,6 +280,7 @@ export default {
             {
               name: 'Stor',
               serviceSlug: 'large',
+              cta: 'Boka Stor granskning',
               price: { tag: 'SEK', amount: '69 000', currency: 'kr', currencyBefore: false, label: '69 000 kr' },
               desc: 'En fullständig granskning för heltäckande coverage lämpad för EAA-efterlevnad eller större lansering.',
               items: ['Hela webbplatsen eller appen', 'WCAG 2.2 AA-checklista', 'Tangentbord & skärmläsare', 'Prioriterad problemlista', '60 min genomgång'],
@@ -315,22 +319,6 @@ export default {
   .hero {
     padding: 7rem 0 5rem;
   }
-}
-
-.eyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.375rem 0.875rem;
-  margin-bottom: 1.5rem;
-  font-size: 0.75rem;
-  font-weight: 500;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: var(--accent);
-  border: 1px solid var(--accent-border-subtle);
-  border-radius: 999px;
-  background: var(--accent-glow);
 }
 
 .hero-title {
@@ -375,15 +363,6 @@ export default {
 
 .section-header--wide {
   max-width: 52rem;
-}
-
-.section-eyebrow {
-  font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--accent);
-  margin-bottom: 0.75rem;
 }
 
 .section-title {
@@ -441,7 +420,7 @@ export default {
   flex-shrink: 0;
   font-size: 1.125rem;
   line-height: 1;
-  color: var(--accent);
+  color: var(--accent-soft-fg);
 }
 
 .feature-card h3 {
@@ -484,8 +463,8 @@ export default {
 }
 
 .pricing-card.featured {
-  border-color: var(--accent-border);
-  background: linear-gradient(180deg, var(--accent-subtle) 0%, var(--bg-card) 40%);
+  border-color: var(--accent-soft-border);
+  background: linear-gradient(180deg, var(--accent-soft-bg) 0%, var(--bg-card) 40%);
 }
 
 .pricing-badge {
@@ -499,8 +478,8 @@ export default {
   font-weight: 600;
   letter-spacing: 0.05em;
   text-transform: uppercase;
-  color: var(--on-accent-deep);
-  background: var(--accent-deep);
+  color: var(--control-active-fg);
+  background: var(--control-active-bg);
   border-radius: 999px;
   white-space: nowrap;
 }
@@ -587,7 +566,7 @@ export default {
   content: '✓';
   position: absolute;
   left: 0;
-  color: var(--accent);
+  color: var(--accent-soft-fg);
   font-weight: 700;
 }
 
@@ -600,8 +579,8 @@ export default {
   margin-top: 3rem;
   padding: 2.5rem 2rem;
   text-align: center;
-  background: linear-gradient(160deg, var(--accent-glow) 0%, var(--bg-card) 45%, var(--bg-card) 100%);
-  border: 1px solid var(--accent-border);
+  background: linear-gradient(160deg, var(--accent-soft-bg) 0%, var(--bg-card) 45%, var(--bg-card) 100%);
+  border: 1px solid var(--accent-soft-border);
   border-radius: var(--radius-box);
   box-shadow: var(--shadow-lg);
 }
@@ -661,8 +640,8 @@ export default {
   height: 0.5rem;
   margin-top: 0.45rem;
   border-radius: 50%;
-  background: var(--accent);
-  box-shadow: 0 0 0 3px var(--accent-glow);
+  background: var(--accent-soft-fg);
+  box-shadow: 0 0 0 3px var(--accent-soft-bg);
 }
 
 .extras-action {

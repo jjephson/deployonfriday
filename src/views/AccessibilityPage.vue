@@ -226,23 +226,7 @@ export default {
 <style scoped>
 .page-hero {
   padding: 4rem 0 3rem;
-  border-bottom: 1px solid var(--border-subtle);
-}
-
-.eyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.375rem 0.875rem;
-  margin-bottom: 1.5rem;
-  font-size: 0.75rem;
-  font-weight: 500;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: var(--accent);
-  border: 1px solid var(--accent-border-subtle);
-  border-radius: 999px;
-  background: var(--accent-glow);
+  border-bottom: 1px solid var(--border);
 }
 
 .hero-title {
@@ -356,7 +340,7 @@ export default {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: var(--accent);
+  background: var(--accent-soft-fg);
 }
 
 .pill-row {
