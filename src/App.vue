@@ -23,13 +23,13 @@
           </ul>
 
           <div class="nav-actions">
-            <div class="theme-toggle" role="group" :aria-label="labels.theme">
-              <button type="button" class="locale-btn" :aria-pressed="theme === 'light'" @click="switchTheme('light')">{{ labels.light }}</button>
-              <button type="button" class="locale-btn" :aria-pressed="theme === 'dark'" @click="switchTheme('dark')">{{ labels.dark }}</button>
+            <div class="control-toggle theme-toggle" role="group" :aria-label="labels.theme">
+              <button type="button" class="control-btn" :aria-pressed="theme === 'light'" @click="switchTheme('light')">{{ labels.light }}</button>
+              <button type="button" class="control-btn" :aria-pressed="theme === 'dark'" @click="switchTheme('dark')">{{ labels.dark }}</button>
             </div>
-            <div class="locale-toggle" role="group" :aria-label="labels.language">
-              <button type="button" class="locale-btn" :aria-pressed="locale === 'en'" @click="switchLocale('en')">EN</button>
-              <button type="button" class="locale-btn" :aria-pressed="locale === 'sv'" @click="switchLocale('sv')">SV</button>
+            <div class="control-toggle locale-toggle" role="group" :aria-label="labels.language">
+              <button type="button" class="control-btn" :aria-pressed="locale === 'en'" @click="switchLocale('en')">EN</button>
+              <button type="button" class="control-btn" :aria-pressed="locale === 'sv'" @click="switchLocale('sv')">SV</button>
             </div>
             <button
               type="button"
@@ -318,59 +318,6 @@ export default {
   align-items: center;
   gap: 0.625rem;
   flex-shrink: 0;
-}
-
-.locale-toggle,
-.theme-toggle {
-  display: inline-flex;
-  gap: 2px;
-  padding: 3px;
-  background: var(--bg-elevated);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-}
-
-.locale-btn {
-  min-height: 32px;
-  min-width: 32px;
-  padding: 0.25rem 0.625rem;
-  border: none;
-  background: transparent;
-  color: var(--ink-dull);
-  font-size: 0.75rem;
-  font-weight: 600;
-  font-family: inherit;
-  cursor: pointer;
-  border-radius: calc(var(--radius) - 4px);
-  transition: background 0.15s ease, color 0.15s ease, box-shadow 0.15s ease;
-}
-
-.locale-btn:hover,
-.locale-btn:focus-visible {
-  color: var(--ink);
-}
-
-.locale-btn[aria-pressed='true'] {
-  background: var(--control-active-bg);
-  color: var(--control-active-fg);
-  box-shadow: var(--shadow);
-}
-
-.locale-btn[aria-pressed='true']:hover,
-.locale-btn[aria-pressed='true']:focus-visible {
-  background: var(--control-active-hover);
-  color: var(--control-active-fg);
-}
-
-.theme-toggle .locale-btn {
-  min-width: 2.85rem;
-}
-
-.locale-btn:focus-visible {
-  outline: 2px solid var(--accent);
-  outline-offset: 0;
-  position: relative;
-  z-index: 1;
 }
 
 .mobile-menu-btn {

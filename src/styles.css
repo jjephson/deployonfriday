@@ -33,12 +33,17 @@
   --accent-border-strong: hsl(215 55% 55%);
   --accent-subtle: hsl(215 45% 20%);
   --accent-deep-border: hsl(215 55% 55%);
-  --control-active-bg: hsl(215 70% 40%);
+  --control-track-bg: #1f2023;
+  --control-track-border: hsl(220 14% 48%);
+  --control-idle-fg: hsl(220 12% 72%);
+  --control-idle-hover-fg: hsl(220 16% 96%);
+  --control-idle-hover-bg: hsl(220 8% 23%);
+  --control-active-bg: hsl(215 70% 46%);
   --control-active-fg: hsl(0 0% 100%);
-  --control-active-hover: hsl(215 70% 44%);
+  --control-active-hover: hsl(215 70% 50%);
   --nav-active-bg: hsl(215 45% 20%);
   --nav-active-fg: hsl(215 75% 88%);
-  --nav-active-border: hsl(215 55% 48%);
+  --nav-active-border: hsl(215 55% 58%);
   --border: hsl(220 14% 48%);
   --border-subtle: hsl(220 12% 44%);
   --border-hover: hsl(220 14% 54%);
@@ -73,15 +78,20 @@
   --accent-border-strong: hsl(215 55% 32%);
   --accent-subtle: hsl(215 70% 40% / 0.08);
   --accent-deep-border: hsl(215 75% 35% / 0.45);
+  --control-track-bg: hsl(220 22% 94%);
+  --control-track-border: hsl(220 14% 52%);
+  --control-idle-fg: hsl(220 15% 32%);
+  --control-idle-hover-fg: hsl(222 30% 14%);
+  --control-idle-hover-bg: hsl(220 18% 88%);
   --control-active-bg: hsl(215 80% 38%);
   --control-active-fg: hsl(0 0% 100%);
   --control-active-hover: hsl(215 80% 34%);
-  --nav-active-bg: hsl(215 85% 36% / 0.12);
-  --nav-active-fg: hsl(215 85% 30%);
-  --nav-active-border: hsl(215 70% 40% / 0.35);
-  --border: hsl(220 14% 86%);
-  --border-subtle: hsl(220 14% 90%);
-  --border-hover: hsl(220 14% 78%);
+  --nav-active-bg: hsl(215 55% 92%);
+  --nav-active-fg: hsl(215 85% 28%);
+  --nav-active-border: hsl(215 55% 42%);
+  --border: hsl(220 14% 52%);
+  --border-subtle: hsl(220 14% 58%);
+  --border-hover: hsl(220 14% 42%);
   --header-bg: hsl(220 30% 97% / 0.85);
   --body-glow-accent: hsl(215 70% 40% / 0.07);
   --body-glow-ink: hsl(215 70% 40% / 0.04);
@@ -247,7 +257,7 @@ a:focus-visible {
 .btn-accent {
   background: var(--control-active-bg);
   color: var(--control-active-fg);
-  border-color: var(--accent-soft-border);
+  border-color: var(--control-track-border);
 }
 
 .btn-accent:hover,
@@ -269,9 +279,67 @@ a:focus-visible {
 
 .btn-accent:disabled {
   background: var(--control-active-bg);
-  border-color: var(--accent-soft-border);
+  border-color: var(--control-track-border);
   color: var(--control-active-fg);
   opacity: 0.85;
+}
+
+.control-toggle {
+  display: inline-flex;
+  gap: 2px;
+  padding: 3px;
+  background: var(--control-track-bg);
+  border: 1px solid var(--control-track-border);
+  border-radius: var(--radius);
+}
+
+.control-btn {
+  min-height: 32px;
+  min-width: 32px;
+  padding: 0.25rem 0.625rem;
+  border: none;
+  background: transparent;
+  color: var(--control-idle-fg);
+  font-size: 0.75rem;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  border-radius: calc(var(--radius) - 4px);
+  transition: background 0.15s ease, color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.control-btn:hover,
+.control-btn:focus-visible {
+  color: var(--control-idle-hover-fg);
+  background: var(--control-idle-hover-bg);
+}
+
+.control-btn[aria-pressed='true'] {
+  background: var(--control-active-bg);
+  color: var(--control-active-fg);
+  box-shadow: var(--shadow);
+}
+
+.control-btn[aria-pressed='true']:hover,
+.control-btn[aria-pressed='true']:focus-visible {
+  background: var(--control-active-hover);
+  color: var(--control-active-fg);
+}
+
+.theme-toggle .control-btn {
+  min-width: 2.85rem;
+}
+
+.control-btn:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 0;
+  position: relative;
+  z-index: 1;
+}
+
+.control-btn[aria-pressed='true']:focus-visible {
+  outline-color: var(--control-active-fg);
+  outline-offset: -2px;
 }
 
 @media (prefers-reduced-motion: reduce) {

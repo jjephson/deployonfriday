@@ -410,7 +410,7 @@ export default {
 .form-group textarea:focus-visible {
   border-color: var(--accent-border-strong);
   outline: none;
-  box-shadow: 0 0 0 2px var(--accent-glow);
+  box-shadow: 0 0 0 2px var(--accent-soft-border);
 }
 
 .form-hint {
