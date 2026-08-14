@@ -4,7 +4,7 @@
       <div class="container">
         <p class="eyebrow">{{ copy.eyebrow }}</p>
         <h1 class="hero-title">{{ copy.title }}</h1>
-        <p class="hero-subtitle">{{ copy.subtitle }}</p>
+        <p class="hero-subtitle">{{ copy.lead }}</p>
       </div>
     </header>
 
@@ -12,6 +12,9 @@
       <div class="container">
         <div class="content-grid">
           <aside class="contact-sidebar">
+            <div class="sidebar-intro">
+              <p v-for="(paragraph, i) in copy.intro" :key="i">{{ paragraph }}</p>
+            </div>
             <h2>{{ copy.sidebarTitle }}</h2>
             <p>{{ copy.sidebarText }}</p>
             <a
@@ -150,8 +153,12 @@ export default {
       contentByLocale: {
         en: {
           eyebrow: 'Contact',
-          title: 'Let\'s talk accessibility.',
-          subtitle: 'Tell me about your product, timeline, and what you need. No sales pitch — just a straight conversation about whether I can help.',
+          title: 'Let\'s talk about your project',
+          lead: 'Tell me a little about what you\'re building, where you\'re at, and what you\'d like help with.',
+          intro: [
+            'Whether you need an accessibility audit, want to improve an existing product, need help understanding WCAG and accessibility requirements, or simply want a second pair of eyes on your frontend, I\'m happy to have a chat.',
+            'Share your goals, timeline, and anything you\'re currently struggling with. We\'ll figure out together what makes sense and whether I can help.'
+          ],
           sidebarTitle: 'Prefer LinkedIn?',
           sidebarText: 'You can also reach me on LinkedIn.',
           formSubject: 'New audit inquiry from deployonfriday.dev',
@@ -185,8 +192,12 @@ export default {
         },
         sv: {
           eyebrow: 'Kontakt',
-          title: 'Låt oss prata tillgänglighet.',
-          subtitle: 'Berätta om er produkt, tidsplan och vad ni behöver. Ingen säljpitch — bara ett rakt samtal om hur jag kan hjälpa.',
+          title: 'Låt oss prata om ert projekt',
+          lead: 'Berätta lite om vad ni bygger, var ni står och vad ni vill ha hjälp med.',
+          intro: [
+            'Oavsett om ni behöver en tillgänglighetsgranskning, vill förbättra en befintlig produkt, behöver hjälp att förstå WCAG och tillgänglighetskrav, eller bara vill ha ett extra par ögon på er frontend, tar jag gärna ett samtal.',
+            'Dela era mål, tidsplan och det ni kämpar med just nu. Vi tar tillsammans reda på vad som är rimligt och om jag kan hjälpa till.'
+          ],
           sidebarTitle: 'Föredrar du LinkedIn?',
           sidebarText: 'Du kan också nå mig på LinkedIn.',
           formSubject: 'Ny granskningsförfrågan från deployonfriday.dev',
@@ -315,6 +326,21 @@ export default {
     grid-template-columns: 1fr 1fr;
     align-items: start;
   }
+}
+
+.sidebar-intro {
+  margin-bottom: 2.5rem;
+  padding-bottom: 2.5rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.sidebar-intro p {
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+
+.sidebar-intro p:last-child {
+  margin-bottom: 0;
 }
 
 .contact-sidebar h2 {

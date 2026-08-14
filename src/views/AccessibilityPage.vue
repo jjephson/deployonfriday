@@ -96,7 +96,7 @@ export default {
         en: {
           eyebrow: 'Accessibility',
           title: 'Inclusive by design, not by accident.',
-          subtitle: 'Accessibility is not a checkbox — it is how you reach every user, meet legal requirements, and build products that hold up under real-world use.',
+          subtitle: 'Accessibility is not a checkbox, it is how you reach every user, meet legal requirements, and build products that hold up under real-world use.',
           standardsLabel: 'Standards and regulations',
           standards: ['WCAG 2.2 AA', 'EAA', 'EN 301 549', 'Section 508'],
           intro: 'Digital accessibility means your product works for people who use keyboards, screen readers, magnification, voice control, or other assistive technologies. It also means clear language, sufficient contrast, and predictable interaction patterns for everyone.',
@@ -158,7 +158,7 @@ export default {
         sv: {
           eyebrow: 'Tillgänglighet',
           title: 'Inkluderande by design, inte av en slump.',
-          subtitle: 'Tillgänglighet är inte en checkbox — det handlar om att nå alla användare, uppfylla lagkrav och bygga produkter som håller i verklig användning.',
+          subtitle: 'Tillgänglighet är inte en checkbox, det handlar om att nå alla användare, uppfylla lagkrav och bygga produkter som håller i verklig användning.',
           standardsLabel: 'Standarder och regelverk',
           standards: ['WCAG 2.2 AA', 'EAA', 'EN 301 549', 'Section 508'],
           intro: 'Digital tillgänglighet innebär att produkten fungerar för personer som använder tangentbord, skärmläsare, förstoring, röststyrning eller andra hjälpmedel. Det innebär också tydligt språk, tillräcklig kontrast och förutsägbara interaktionsmönster för alla.',
