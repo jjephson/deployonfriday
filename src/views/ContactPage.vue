@@ -402,6 +402,15 @@ export default {
   border-radius: var(--radius);
 }
 
+.form-group select:invalid {
+  color: var(--ink-dull);
+}
+
+.form-group select option {
+  color: var(--ink);
+  background: var(--bg-card);
+}
+
 .form-group textarea {
   min-height: 8rem;
   resize: vertical;
@@ -422,7 +431,7 @@ export default {
 
 .form-hint {
   font-size: 0.75rem;
-  color: var(--ink-faint);
+  color: var(--ink-dull);
   margin-top: 0.375rem;
 }
 

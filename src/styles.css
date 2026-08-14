@@ -18,21 +18,21 @@
   --bg-hover: hsl(220 12% 12%);
   --ink: hsl(220 16% 96%);
   --ink-dull: hsl(220 8% 58%);
-  --ink-faint: hsl(220 6% 40%);
+  --ink-faint: hsl(220 10% 55%);
   --ink-hover: hsl(220 16% 90%);
   --accent: hsl(215 75% 62%);
-  --accent-deep: hsl(215 75% 40%);
-  --accent-deep-hover: hsl(215 75% 44%);
+  --accent-deep: hsl(215 75% 52%);
+  --accent-deep-hover: hsl(215 75% 56%);
   --on-accent-deep: hsl(220 16% 96%);
   --accent-glow: hsl(215 75% 62% / 0.12);
   --accent-border-subtle: hsl(215 70% 55% / 0.25);
   --accent-border: hsl(215 70% 55% / 0.4);
   --accent-border-strong: hsl(215 70% 55% / 0.5);
   --accent-subtle: hsl(215 70% 55% / 0.06);
-  --accent-deep-border: hsl(215 70% 50% / 0.55);
-  --border: hsl(220 10% 13%);
-  --border-subtle: hsl(220 10% 10%);
-  --border-hover: hsl(220 10% 18%);
+  --accent-deep-border: hsl(215 70% 62% / 0.65);
+  --border: hsl(220 14% 42%);
+  --border-subtle: hsl(220 12% 24%);
+  --border-hover: hsl(220 14% 50%);
   --header-bg: hsl(220 14% 4% / 0.85);
   --body-glow-accent: hsl(215 70% 55% / 0.06);
   --body-glow-ink: hsl(220 16% 96% / 0.03);
@@ -211,6 +211,24 @@ a:focus-visible {
 .btn-accent:focus-visible {
   background: var(--accent-deep-hover);
   color: var(--on-accent-deep);
+}
+
+.btn:disabled {
+  opacity: 1;
+  cursor: not-allowed;
+}
+
+.btn-primary:disabled {
+  background: var(--ink-dull);
+  border-color: var(--ink-dull);
+  color: var(--bg);
+}
+
+.btn-accent:disabled {
+  background: var(--accent-deep);
+  border-color: var(--accent-deep-border);
+  color: var(--on-accent-deep);
+  opacity: 0.85;
 }
 
 @media (prefers-reduced-motion: reduce) {
