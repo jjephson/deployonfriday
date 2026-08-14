@@ -26,14 +26,32 @@
 
           <div>
             <div v-if="submitted" class="form-status success" role="status" aria-live="polite">
-              {{ copy.successMessage }}
+              <span class="form-status-icon" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M16.667 5.833 8.333 14.167 3.333 9.167" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+              <div class="form-status-content">
+                <p class="form-status-title">{{ copy.successTitle }}</p>
+                <p class="form-status-desc">{{ copy.successFollowUp }}</p>
+              </div>
             </div>
             <div v-if="error" class="form-status error" role="alert">
-              {{ copy.errorMessage }}
+              <span class="form-status-icon" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M10 6.667v4.166M10 13.75h.008" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                  <circle cx="10" cy="10" r="7.5" stroke="currentColor" stroke-width="2"/>
+                </svg>
+              </span>
+              <div class="form-status-content">
+                <p class="form-status-title">{{ copy.errorTitle }}</p>
+                <p class="form-status-desc">{{ copy.errorMessage }}</p>
+              </div>
             </div>
 
             <form
               v-if="!submitted"
+              ref="contactForm"
               class="contact-form"
               action="https://formsubmit.co/why@deployonfriday.dev"
               method="POST"
@@ -52,6 +70,7 @@
                 <label for="name">{{ copy.nameLabel }}</label>
                 <input
                   id="name"
+                  ref="nameInput"
                   name="name"
                   type="text"
                   required
@@ -85,9 +104,9 @@
 
               <div class="form-group">
                 <label for="service">{{ copy.serviceLabel }}</label>
-                <select id="service" name="service" required>
+                <select id="service" name="service" required v-model="selectedService">
                   <option value="" disabled hidden>{{ copy.servicePlaceholder }}</option>
-                  <option v-for="opt in copy.serviceOptions" :key="opt" :value="opt">{{ opt }}</option>
+                  <option v-for="opt in copy.serviceOptions" :key="opt.slug" :value="opt.label">{{ opt.label }}</option>
                 </select>
               </div>
 
@@ -127,6 +146,7 @@ export default {
       submitted: false,
       error: false,
       submitting: false,
+      selectedService: '',
       contentByLocale: {
         en: {
           eyebrow: 'Contact',
@@ -146,19 +166,22 @@ export default {
           serviceLabel: 'What do you need?',
           servicePlaceholder: 'Select a service',
           serviceOptions: [
-            'Snapshot audit',
-            'Full audit',
-            'Ongoing support',
-            'Workshop / training',
-            'Other / not sure'
+            { slug: 'small', label: 'Small audit' },
+            { slug: 'medium', label: 'Medium audit' },
+            { slug: 'large', label: 'Large audit' },
+            { slug: 'ongoing', label: 'Ongoing support' },
+            { slug: 'workshop', label: 'Workshop / training' },
+            { slug: 'other', label: 'Other / not sure' }
           ],
           messageLabel: 'Message',
           messagePlaceholder: 'Tell me about your product, current accessibility status, and any deadlines...',
           messageHint: 'Include URLs if you have a live product to review.',
           submitLabel: 'Send message',
           submitting: 'Sending…',
-          successMessage: 'Thanks! Your message has been sent.',
-          errorMessage: 'Something went wrong. Please try again in a moment.'
+          successTitle: 'Thanks! Your message has been sent.',
+          successFollowUp: 'I\'ll get back to you as quickly as possible.',
+          errorTitle: 'Something went wrong',
+          errorMessage: 'Please try again in a moment.'
         },
         sv: {
           eyebrow: 'Kontakt',
@@ -178,19 +201,22 @@ export default {
           serviceLabel: 'Vad behöver ni?',
           servicePlaceholder: 'Välj tjänst',
           serviceOptions: [
-            'Snapshot-granskning',
-            'Full granskning',
-            'Löpande stöd',
-            'Workshop / utbildning',
-            'Annat / osäker'
+            { slug: 'small', label: 'Liten granskning' },
+            { slug: 'medium', label: 'Medium granskning' },
+            { slug: 'large', label: 'Stor granskning' },
+            { slug: 'ongoing', label: 'Löpande stöd' },
+            { slug: 'workshop', label: 'Workshop / utbildning' },
+            { slug: 'other', label: 'Annat / osäker' }
           ],
           messageLabel: 'Meddelande',
           messagePlaceholder: 'Berätta om er produkt, nuvarande tillgänglighetsstatus och eventuella deadlines...',
           messageHint: 'Inkludera URL:er om ni har en liveprodukt att granska.',
           submitLabel: 'Skicka meddelande',
           submitting: 'Skickar…',
-          successMessage: 'Tack! Ditt meddelande har skickats.',
-          errorMessage: 'Något gick fel. Försök igen om en stund.'
+          successTitle: 'Tack! Ditt meddelande har skickats.',
+          successFollowUp: 'Jag återkommer så snart som möjligt.',
+          errorTitle: 'Något gick fel',
+          errorMessage: 'Försök igen om en stund.'
         }
       }
     }
@@ -211,8 +237,40 @@ export default {
     if (this.$route.query.sent === '1') {
       this.submitted = true
     }
+    this.applyServiceFromQuery()
+    this.focusFormIfRequested()
+  },
+  watch: {
+    '$route.query.service'(newSlug, oldSlug) {
+      this.applyServiceFromQuery()
+      if (newSlug && newSlug !== oldSlug) {
+        this.focusFormIfRequested()
+      }
+    },
+    locale() {
+      this.applyServiceFromQuery()
+    }
   },
   methods: {
+    applyServiceFromQuery() {
+      const slug = this.$route.query.service
+      if (!slug || typeof slug !== 'string') {
+        this.selectedService = ''
+        return
+      }
+      const match = this.copy.serviceOptions.find((opt) => opt.slug === slug)
+      this.selectedService = match ? match.label : ''
+    },
+    focusFormIfRequested() {
+      const slug = this.$route.query.service
+      if (this.submitted || !slug || typeof slug !== 'string') return
+      if (!this.copy.serviceOptions.some((opt) => opt.slug === slug)) return
+
+      this.$nextTick(() => {
+        this.$refs.contactForm?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+        this.$refs.nameInput?.focus()
+      })
+    },
     onSubmit() {
       this.submitting = true
     }
@@ -315,6 +373,7 @@ export default {
   background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: var(--radius-box);
+  scroll-margin-top: calc(var(--header-height) + 1rem);
 }
 
 .form-group {
@@ -368,21 +427,102 @@ export default {
 }
 
 .form-status {
-  padding: 0.875rem 1rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.875rem;
+  padding: 1rem 1.125rem;
   border-radius: var(--radius-box);
-  font-size: 0.875rem;
+  font-size: 0.9375rem;
+  line-height: 1.5;
   margin-bottom: 1rem;
 }
 
+.form-status-icon {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 50%;
+}
+
+.form-status-icon svg {
+  display: block;
+}
+
+.form-status-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.form-status-title {
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.form-status-desc {
+  font-size: 0.875rem;
+  margin: 0;
+}
+
 .form-status.success {
-  background: hsl(142 50% 30% / 0.2);
-  border: 1px solid hsl(142 50% 40% / 0.4);
-  color: hsl(142 60% 75%);
+  --status-bg: hsl(142 35% 15%);
+  --status-border: hsl(142 40% 38%);
+  --status-ink: hsl(142 20% 93%);
+  --status-desc: hsl(142 15% 82%);
+  --status-icon-bg: hsl(142 45% 28%);
+  --status-icon-fg: hsl(142 20% 96%);
+  background: var(--status-bg);
+  border: 1px solid var(--status-border);
+  color: var(--status-ink);
+}
+
+.form-status.success .form-status-desc {
+  color: var(--status-desc);
+}
+
+.form-status.success .form-status-icon {
+  background: var(--status-icon-bg);
+  color: var(--status-icon-fg);
+}
+
+:global([data-theme='light']) .form-status.success {
+  --status-bg: hsl(142 45% 95%);
+  --status-border: hsl(142 45% 30%);
+  --status-ink: hsl(142 55% 14%);
+  --status-desc: hsl(142 40% 22%);
+  --status-icon-bg: hsl(142 50% 26%);
+  --status-icon-fg: hsl(0 0% 100%);
 }
 
 .form-status.error {
-  background: hsl(0 50% 30% / 0.2);
-  border: 1px solid hsl(0 50% 40% / 0.4);
-  color: hsl(0 60% 75%);
+  --status-bg: hsl(0 40% 16%);
+  --status-border: hsl(0 45% 40%);
+  --status-ink: hsl(0 15% 93%);
+  --status-desc: hsl(0 12% 82%);
+  --status-icon-bg: hsl(0 50% 32%);
+  --status-icon-fg: hsl(0 10% 96%);
+  background: var(--status-bg);
+  border: 1px solid var(--status-border);
+  color: var(--status-ink);
+}
+
+.form-status.error .form-status-desc {
+  color: var(--status-desc);
+}
+
+.form-status.error .form-status-icon {
+  background: var(--status-icon-bg);
+  color: var(--status-icon-fg);
+}
+
+:global([data-theme='light']) .form-status.error {
+  --status-bg: hsl(0 55% 96%);
+  --status-border: hsl(0 50% 32%);
+  --status-ink: hsl(0 55% 16%);
+  --status-desc: hsl(0 45% 24%);
+  --status-icon-bg: hsl(0 55% 38%);
+  --status-icon-fg: hsl(0 0% 100%);
 }
 </style>

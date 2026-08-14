@@ -78,7 +78,7 @@
             <ul class="pricing-list">
               <li v-for="item in pkg.items" :key="item">{{ item }}</li>
             </ul>
-            <router-link :to="withLocale('/contact')" class="btn" :class="pkg.featured ? 'btn-accent' : 'btn-secondary'">
+            <router-link :to="contactLinkForPackage(pkg)" class="btn" :class="pkg.featured ? 'btn-accent' : 'btn-secondary'">
               {{ copy.packageCta }}
             </router-link>
           </article>
@@ -145,6 +145,12 @@ export default {
       const base = `/${this.locale}`
       if (!path || path === '/') return base
       return `${base}${path.startsWith('/') ? path : `/${path}`}`
+    },
+    contactLinkForPackage(pkg) {
+      return {
+        path: this.withLocale('/contact'),
+        query: { service: pkg.serviceSlug }
+      }
     }
   },
   data() {
@@ -182,6 +188,7 @@ export default {
           packages: [
             {
               name: 'Small',
+              serviceSlug: 'small',
               price: { tag: 'EUR', amount: '1,900', currency: '€', currencyBefore: true, label: '€1,900' },
               desc: 'A quick check focused on your most critical user flows ideal before a launch or redesign.',
               items: ['Up to 5 key pages/flows', 'WCAG 2.2 AA checklist', 'Keyboard & screen reader pass', 'Priority issue list', '30-min debrief call'],
@@ -189,6 +196,7 @@ export default {
             },
             {
               name: 'Medium',
+              serviceSlug: 'medium',
               badge: 'Most popular',
               price: { tag: 'EUR', amount: '4,900', currency: '€', currencyBefore: true, label: '€4,900' },
               desc: 'A bigger audit covering more of your product with the same rigorous testing approach.',
@@ -197,6 +205,7 @@ export default {
             },
             {
               name: 'Large',
+              serviceSlug: 'large',
               price: { tag: 'EUR', amount: '6,900', currency: '€', currencyBefore: true, label: '€6,900' },
               desc: 'A full audit for complete coverage suited to EAA compliance or a major release.',
               items: ['Full site or app review', 'WCAG 2.2 AA checklist', 'Keyboard & screen reader pass', 'Priority issue list', '60-min debrief call'],
@@ -250,6 +259,7 @@ export default {
           packages: [
             {
               name: 'Liten',
+              serviceSlug: 'small',
               price: { tag: 'SEK', amount: '19 000', currency: 'kr', currencyBefore: false, label: '19 000 kr' },
               desc: 'En snabb kontroll fokuserad på era viktigaste användarflöden perfekt före lansering eller redesign.',
               items: ['Upp till 5 viktiga sidor/flöden', 'WCAG 2.2 AA-checklista', 'Tangentbord & skärmläsare', 'Prioriterad problemlista', '30 min genomgång'],
@@ -257,6 +267,7 @@ export default {
             },
             {
               name: 'Medium',
+              serviceSlug: 'medium',
               badge: 'Populärast',
               price: { tag: 'SEK', amount: '49 000', currency: 'kr', currencyBefore: false, label: '49 000 kr' },
               desc: 'En större granskning som täcker mer av produkten med samma noggranna testning.',
@@ -265,6 +276,7 @@ export default {
             },
             {
               name: 'Stor',
+              serviceSlug: 'large',
               price: { tag: 'SEK', amount: '69 000', currency: 'kr', currencyBefore: false, label: '69 000 kr' },
               desc: 'En fullständig granskning för heltäckande coverage lämpad för EAA-efterlevnad eller större lansering.',
               items: ['Hela webbplatsen eller appen', 'WCAG 2.2 AA-checklista', 'Tangentbord & skärmläsare', 'Prioriterad problemlista', '60 min genomgång'],
