@@ -357,9 +357,9 @@ export default {
   font-size: 0.75rem;
   font-weight: 500;
   font-family: var(--font-mono);
-  color: var(--ink-dull);
-  background: var(--bg-elevated);
-  border: 1px solid var(--border);
+  color: var(--accent-soft-fg);
+  background: var(--accent-soft-bg);
+  border: 1px solid var(--accent-soft-border);
   border-radius: 999px;
 }
 
