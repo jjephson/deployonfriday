@@ -12,10 +12,10 @@
 [data-theme='dark'] {
   color-scheme: dark;
 
-  --bg: hsl(220 14% 4%);
-  --bg-card: hsl(220 12% 7%);
-  --bg-elevated: hsl(220 12% 10%);
-  --bg-hover: hsl(220 12% 12%);
+  --bg: #1f2023;
+  --bg-card: hsl(220 8% 17%);
+  --bg-elevated: hsl(220 8% 20%);
+  --bg-hover: hsl(220 8% 23%);
   --ink: hsl(220 16% 96%);
   --ink-dull: hsl(220 8% 58%);
   --ink-faint: hsl(220 10% 55%);
@@ -39,10 +39,10 @@
   --nav-active-bg: hsl(215 45% 20%);
   --nav-active-fg: hsl(215 75% 88%);
   --nav-active-border: hsl(215 55% 48%);
-  --border: hsl(220 14% 42%);
-  --border-subtle: hsl(220 12% 40%);
-  --border-hover: hsl(220 14% 50%);
-  --header-bg: hsl(220 14% 4% / 0.85);
+  --border: hsl(220 14% 48%);
+  --border-subtle: hsl(220 12% 44%);
+  --border-hover: hsl(220 14% 54%);
+  --header-bg: rgb(31 32 35 / 0.85);
   --body-glow-accent: hsl(215 70% 55% / 0.06);
   --body-glow-ink: hsl(220 16% 96% / 0.03);
   --shadow: 0 1px 2px hsl(0 0% 0% / 0.4);

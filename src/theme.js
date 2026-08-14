@@ -1,7 +1,7 @@
 const STORAGE_KEY = 'deployonfriday-theme'
 
 const THEME_COLORS = {
-  dark: '#090a0c',
+  dark: '#1f2023',
   light: '#f3f4f6'
 }
 
