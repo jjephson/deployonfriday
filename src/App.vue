@@ -275,28 +275,25 @@ export default {
   align-items: center;
   min-height: 44px;
   padding: 0.5rem 0.875rem;
-  color: var(--ink);
-  opacity: 0.78;
+  color: var(--ink-dull);
   font-size: 0.875rem;
   font-weight: 500;
   border-radius: var(--radius);
   text-decoration: none;
-  transition: color 0.15s ease, background 0.15s ease, opacity 0.15s ease;
+  transition: color 0.15s ease, background 0.15s ease;
 }
 
 .nav-link:hover,
 .nav-link:focus-visible {
   color: var(--ink);
-  opacity: 1;
   background: var(--bg-hover);
 }
 
 .nav-link.router-link-exact-active {
-  color: var(--accent);
-  opacity: 1;
-  background: var(--accent-glow);
+  color: var(--nav-active-fg);
+  background: var(--nav-active-bg);
   font-weight: 600;
-  box-shadow: inset 0 0 0 1px var(--accent-border-subtle);
+  box-shadow: inset 0 0 0 1px var(--nav-active-border);
 }
 
 @media (min-width: 768px) {
@@ -354,15 +351,15 @@ export default {
 }
 
 .locale-btn[aria-pressed='true'] {
-  background: var(--accent-deep);
-  color: var(--on-accent-deep);
+  background: var(--control-active-bg);
+  color: var(--control-active-fg);
   box-shadow: var(--shadow);
 }
 
 .locale-btn[aria-pressed='true']:hover,
 .locale-btn[aria-pressed='true']:focus-visible {
-  background: var(--accent-deep-hover);
-  color: var(--on-accent-deep);
+  background: var(--control-active-hover);
+  color: var(--control-active-fg);
 }
 
 .theme-toggle .locale-btn {

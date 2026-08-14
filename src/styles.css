@@ -30,6 +30,12 @@
   --accent-border-strong: hsl(215 70% 55% / 0.5);
   --accent-subtle: hsl(215 70% 55% / 0.06);
   --accent-deep-border: hsl(215 70% 62% / 0.65);
+  --control-active-bg: hsl(215 70% 40%);
+  --control-active-fg: hsl(0 0% 100%);
+  --control-active-hover: hsl(215 70% 44%);
+  --nav-active-bg: hsl(215 45% 20%);
+  --nav-active-fg: hsl(215 75% 88%);
+  --nav-active-border: hsl(215 55% 48%);
   --border: hsl(220 14% 42%);
   --border-subtle: hsl(220 12% 24%);
   --border-hover: hsl(220 14% 50%);
@@ -61,6 +67,12 @@
   --accent-border-strong: hsl(215 70% 40% / 0.45);
   --accent-subtle: hsl(215 70% 40% / 0.08);
   --accent-deep-border: hsl(215 75% 35% / 0.45);
+  --control-active-bg: hsl(215 80% 38%);
+  --control-active-fg: hsl(0 0% 100%);
+  --control-active-hover: hsl(215 80% 34%);
+  --nav-active-bg: hsl(215 85% 36% / 0.12);
+  --nav-active-fg: hsl(215 85% 30%);
+  --nav-active-border: hsl(215 70% 40% / 0.35);
   --border: hsl(220 14% 86%);
   --border-subtle: hsl(220 14% 90%);
   --border-hover: hsl(220 14% 78%);
