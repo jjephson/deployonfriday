@@ -301,7 +301,7 @@ export default {
   padding: 1.75rem;
   background: var(--bg-card);
   border: 1px solid var(--border);
-  border-radius: var(--radius-xl);
+  border-radius: var(--radius-box);
 }
 
 .form-group {
@@ -356,7 +356,7 @@ export default {
 
 .form-status {
   padding: 0.875rem 1rem;
-  border-radius: var(--radius);
+  border-radius: var(--radius-box);
   font-size: 0.875rem;
   margin-bottom: 1rem;
 }

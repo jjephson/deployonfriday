@@ -403,7 +403,7 @@ export default {
   padding: 1.5rem;
   background: var(--bg-card);
   border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-box);
   transition: border-color 0.15s ease;
 }
 
@@ -421,7 +421,7 @@ export default {
   font-size: 1rem;
   background: var(--bg-elevated);
   border: 1px solid var(--border);
-  border-radius: var(--radius);
+  border-radius: var(--radius-box);
   color: var(--accent);
 }
 
@@ -461,7 +461,7 @@ export default {
   padding: 1.75rem;
   background: var(--bg-card);
   border: 1px solid var(--border);
-  border-radius: var(--radius-xl);
+  border-radius: var(--radius-box);
 }
 
 .pricing-card.featured {
@@ -500,7 +500,7 @@ export default {
 .pricing-card.featured .pricing-price {
   padding: 0.875rem 1rem;
   background: var(--accent-glow);
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-box);
 }
 
 .pricing-price-tag {
@@ -581,7 +581,7 @@ export default {
   text-align: center;
   background: linear-gradient(160deg, var(--accent-glow) 0%, var(--bg-card) 45%, var(--bg-card) 100%);
   border: 1px solid var(--accent-border);
-  border-radius: var(--radius-xl);
+  border-radius: var(--radius-box);
   box-shadow: var(--shadow-lg);
 }
 
@@ -630,7 +630,7 @@ export default {
   color: var(--ink);
   background: var(--bg-card);
   border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-box);
   box-shadow: var(--shadow);
 }
 
@@ -673,7 +673,7 @@ export default {
   padding: 1.25rem;
   background: var(--bg-card);
   border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-box);
 }
 
 .stat-value {

@@ -279,7 +279,7 @@ export default {
   background: var(--bg-hover);
 }
 
-.nav-link.router-link-active {
+.nav-link.router-link-exact-active {
   color: var(--accent);
   background: var(--accent-glow);
   font-weight: 600;

@@ -57,7 +57,7 @@ export default {
   padding: 0.75rem;
   background: var(--bg-card);
   border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-box);
   overflow: hidden;
   transition: border-color 0.15s ease;
 }
@@ -74,7 +74,7 @@ export default {
   height: 100%;
   padding: 0.625rem;
   background: var(--ink);
-  border-radius: calc(var(--radius-lg) - 4px);
+  border-radius: var(--radius-box);
 }
 
 .client-logo-surface img {

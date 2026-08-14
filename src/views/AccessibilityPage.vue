@@ -316,7 +316,7 @@ export default {
   padding: 1.5rem;
   background: var(--bg-card);
   border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-box);
 }
 
 .info-card + .info-card {
@@ -383,7 +383,7 @@ export default {
   text-align: center;
   background: var(--bg-card);
   border: 1px solid var(--border);
-  border-radius: var(--radius-xl);
+  border-radius: var(--radius-box);
 }
 
 .section-title {
