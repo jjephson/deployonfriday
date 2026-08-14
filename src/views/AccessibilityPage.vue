@@ -32,12 +32,6 @@
                 <strong>{{ step.title }}</strong> — {{ step.desc }}
               </li>
             </ol>
-
-            <h2>{{ copy.statementTitle }}</h2>
-            <p>{{ copy.statementText }}</p>
-            <p>
-              <router-link :to="withLocale('/contact')">{{ copy.statementLink }}</router-link>
-            </p>
           </div>
 
           <aside :aria-label="copy.sidebarAria">
@@ -100,7 +94,7 @@ export default {
           standardsLabel: 'Standards and regulations',
           standards: ['WCAG 2.2 AA', 'EAA', 'EN 301 549', 'Section 508'],
           intro: 'Digital accessibility means your product works for people who use keyboards, screen readers, magnification, voice control, or other assistive technologies. It also means clear language, sufficient contrast, and predictable interaction patterns for everyone.',
-          whyTitle: 'Why it matters',
+          whyTitle: 'Better for people, and required by law',
           whyText: 'Beyond the ethical case, accessibility is increasingly a legal requirement in the EU and beyond. The European Accessibility Act (EAA) requires many digital products and services to be accessible by June 2025. Getting ahead of compliance reduces risk and improves experience for all users.',
           whyItems: [
             'Reach more users — roughly 16% of the global population lives with a disability',
@@ -118,9 +112,6 @@ export default {
             { title: 'Walkthrough', desc: 'A call to review findings, answer questions, and plan remediation.' },
             { title: 'Follow-up', desc: 'Optional re-testing after fixes to verify resolution.' }
           ],
-          statementTitle: 'This site\'s commitment',
-          statementText: 'This website is built to WCAG 2.1 AA standards with semantic HTML, keyboard navigation, visible focus indicators, reduced motion support, and high contrast mode compatibility.',
-          statementLink: 'Report an accessibility issue →',
           sidebarAria: 'Accessibility topics',
           testingTitle: 'Testing methods',
           testingItems: [
@@ -162,7 +153,7 @@ export default {
           standardsLabel: 'Standarder och regelverk',
           standards: ['WCAG 2.2 AA', 'EAA', 'EN 301 549', 'Section 508'],
           intro: 'Digital tillgänglighet innebär att produkten fungerar för personer som använder tangentbord, skärmläsare, förstoring, röststyrning eller andra hjälpmedel. Det innebär också tydligt språk, tillräcklig kontrast och förutsägbara interaktionsmönster för alla.',
-          whyTitle: 'Varför det spelar roll',
+          whyTitle: 'Bättre för människor, och ett lagkrav',
           whyText: 'Utöver det etiska argumentet blir tillgänglighet allt mer ett lagkrav i EU och globalt. European Accessibility Act (EAA) kräver att många digitala produkter och tjänster är tillgängliga. Att ligga steget före minskar risk och förbättrar upplevelsen för alla.',
           whyItems: [
             'Nå fler användare — cirka 16 % av världens befolkning lever med funktionsnedsättning',
@@ -180,9 +171,6 @@ export default {
             { title: 'Genomgång', desc: 'Ett samtal för att gå igenom fynd, svara på frågor och planera åtgärder.' },
             { title: 'Uppföljning', desc: 'Valfri omtestning efter åtgärder för att verifiera lösning.' }
           ],
-          statementTitle: 'Denna webbplats',
-          statementText: 'Webbplatsen är byggd enligt WCAG 2.1 AA med semantisk HTML, tangentbordsnavigering, synliga fokusindikatorer, stöd för reduced motion och högkontrastläge.',
-          statementLink: 'Rapportera ett tillgänglighetsproblem →',
           sidebarAria: 'Tillgänglighetsämnen',
           testingTitle: 'Testmetoder',
           testingItems: [
