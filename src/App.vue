@@ -58,7 +58,7 @@
       <div class="container footer-inner">
         <div class="footer-brand">
           <img src="/images/logo.svg" alt="" width="24" height="24">
-          <span>Deploy on Friday — Accessibility audits</span>
+          <span>Deploy on Friday Accessibility audits</span>
         </div>
         <ul class="footer-links" :aria-label="labels.footerNav">
           <li>

@@ -2,7 +2,6 @@
   <main id="main" tabindex="-1">
     <header class="page-hero">
       <div class="container">
-        <p class="eyebrow">{{ copy.eyebrow }}</p>
         <h1 class="hero-title">{{ copy.title }}</h1>
         <p class="hero-subtitle">{{ copy.lead }}</p>
       </div>
@@ -152,7 +151,6 @@ export default {
       selectedService: '',
       contentByLocale: {
         en: {
-          eyebrow: 'Contact',
           title: 'Let\'s talk about your project',
           lead: 'Tell me a little about what you\'re building, where you\'re at, and what you\'d like help with.',
           intro: [
@@ -191,7 +189,6 @@ export default {
           errorMessage: 'Please try again in a moment.'
         },
         sv: {
-          eyebrow: 'Kontakt',
           title: 'Låt oss prata om ert projekt',
           lead: 'Berätta lite om vad ni bygger, var ni står och vad ni vill ha hjälp med.',
           intro: [

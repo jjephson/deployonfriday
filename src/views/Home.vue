@@ -2,7 +2,6 @@
   <main id="main" tabindex="-1">
     <section class="hero" aria-labelledby="hero-heading">
       <div class="container">
-        <p class="eyebrow">{{ copy.eyebrow }}</p>
         <h1 id="hero-heading" class="hero-title">{{ copy.heroTitle }}</h1>
         <p class="hero-subtitle">{{ copy.heroSubtitle }}</p>
         <div class="hero-actions">
@@ -158,7 +157,6 @@ export default {
       showTrustedBySection: false,
       contentByLocale: {
         en: {
-          eyebrow: 'Accessibility audits & consulting',
           heroTitle: 'Inclusive experiences, by design.',
           heroSubtitle: 'Professional WCAG audits, practical remediation plans, and ongoing accessibility support helping teams create inclusive digital experiences that stand the test of time.',
           ctaPrimary: 'Book an audit',
@@ -231,7 +229,6 @@ export default {
           ctaDesc: 'Every project is different. Tell us about yours, and we will help you build a more inclusive digital experience.'
         },
         sv: {
-          eyebrow: 'Tillgänglighetsgranskningar & rådgivning',
           heroTitle: 'Inkluderande upplevelser från grunden.',
           heroSubtitle: 'Professionella WCAG-granskningar, konkreta åtgärdsplaner och löpande stöd inom tillgänglighet som hjälper team att skapa inkluderande digitala upplevelser som håller över tid.',
           ctaPrimary: 'Boka granskning',

@@ -2,7 +2,6 @@
   <main id="main" tabindex="-1">
     <header class="page-hero">
       <div class="container">
-        <p class="eyebrow">{{ copy.eyebrow }}</p>
         <h1 class="hero-title">{{ copy.title }}</h1>
         <p class="hero-subtitle">{{ copy.subtitle }}</p>
         <ul class="pill-row" :aria-label="copy.standardsLabel">
@@ -29,7 +28,7 @@
             <h2>{{ copy.processTitle }}</h2>
             <ol>
               <li v-for="step in copy.processSteps" :key="step.title">
-                <strong>{{ step.title }}</strong> — {{ step.desc }}
+                <strong>{{ step.title }}:</strong> {{ step.desc }}
               </li>
             </ol>
           </div>
@@ -88,7 +87,6 @@ export default {
     return {
       contentByLocale: {
         en: {
-          eyebrow: 'Accessibility',
           title: 'Inclusive by design, not by accident.',
           subtitle: 'Accessibility is not a checkbox, it is how you reach every user, meet legal requirements, and build products that hold up under real-world use.',
           standardsLabel: 'Standards and regulations',
@@ -97,26 +95,25 @@ export default {
           whyTitle: 'Better for people, and required by law',
           whyText: 'Beyond the ethical case, accessibility is increasingly a legal requirement in the EU and beyond. The European Accessibility Act (EAA) requires many digital products and services to be accessible by June 2025. Getting ahead of compliance reduces risk and improves experience for all users.',
           whyItems: [
-            'Reach more users — roughly 16% of the global population lives with a disability',
+            'Reach more users roughly 16% of the global population lives with a disability',
             'Reduce legal and reputational risk under EAA and national regulations',
             'Improve SEO, usability, and mobile experience for everyone',
             'Lower support costs through clearer interfaces and error handling'
           ],
           wcagTitle: 'WCAG explained simply',
-          wcagText: 'The Web Content Accessibility Guidelines (WCAG) define how to make web content accessible. Level AA is the standard most organizations target and what I test against. The four principles — Perceivable, Operable, Understandable, and Robust — cover everything from color contrast to keyboard navigation to semantic HTML.',
+          wcagText: 'The Web Content Accessibility Guidelines (WCAG) define how to make web content accessible. Level AA is the standard most organizations target and what I test against. The four principles: Perceivable, Operable, Understandable, and Robust cover everything from color contrast to keyboard navigation to semantic HTML.',
           processTitle: 'How an audit works',
           processSteps: [
             { title: 'Scoping', desc: 'We define key user journeys, target WCAG level, and any regulatory context.' },
             { title: 'Manual testing', desc: 'Keyboard navigation, screen reader testing, visual checks, and code review.' },
             { title: 'Reporting', desc: 'Issues documented with severity, WCAG criterion, and reproduction steps.' },
-            { title: 'Walkthrough', desc: 'A call to review findings, answer questions, and plan remediation.' },
-            { title: 'Follow-up', desc: 'Optional re-testing after fixes to verify resolution.' }
+            { title: 'Walkthrough', desc: 'A call to review findings, answer questions, and plan remediation.' }
           ],
           sidebarAria: 'Accessibility topics',
           testingTitle: 'Testing methods',
           testingItems: [
             'Keyboard-only navigation',
-            'Screen reader testing (NVDA, VoiceOver, JAWS)',
+            'Screen reader testing',
             'Color contrast analysis',
             'Zoom up to 200%',
             'Mobile and responsive checks',
@@ -136,7 +133,6 @@ export default {
           toolsTitle: 'Standards & tools',
           toolsItems: [
             'WCAG 2.1 & 2.2',
-            'ARIA Authoring Practices',
             'axe DevTools',
             'NVDA & VoiceOver',
             'Colour Contrast Analyser',
@@ -147,13 +143,12 @@ export default {
           ctaButton: 'Book an audit'
         },
         sv: {
-          eyebrow: 'Tillgänglighet',
           title: 'Inkluderande by design, inte av en slump.',
           subtitle: 'Tillgänglighet är inte en checkbox, det handlar om att nå alla användare, uppfylla lagkrav och bygga produkter som håller i verklig användning.',
           standardsLabel: 'Standarder och regelverk',
           standards: ['WCAG 2.2 AA', 'EAA', 'EN 301 549', 'Section 508'],
           intro: 'Digital tillgänglighet innebär att produkten fungerar för personer som använder tangentbord, skärmläsare, förstoring, röststyrning eller andra hjälpmedel. Det innebär också tydligt språk, tillräcklig kontrast och förutsägbara interaktionsmönster för alla.',
-          whyTitle: 'Bättre för människor, och ett lagkrav',
+          whyTitle: 'Bättre för människor och ett lagkrav',
           whyText: 'Utöver det etiska argumentet blir tillgänglighet allt mer ett lagkrav i EU och globalt. European Accessibility Act (EAA) kräver att många digitala produkter och tjänster är tillgängliga. Att ligga steget före minskar risk och förbättrar upplevelsen för alla.',
           whyItems: [
             'Nå fler användare — cirka 16 % av världens befolkning lever med funktionsnedsättning',
@@ -162,20 +157,19 @@ export default {
             'Sänk supportkostnader genom tydligare gränssnitt och felhantering'
           ],
           wcagTitle: 'WCAG enkelt förklarat',
-          wcagText: 'Web Content Accessibility Guidelines (WCAG) definierar hur webbinnehåll ska göras tillgängligt. Nivå AA är standarden de flesta organisationer siktar på och det jag testar mot. De fyra principerna — Perceivable, Operable, Understandable och Robust — täcker allt från färgkontrast till tangentbordsnavigering och semantisk HTML.',
+          wcagText: 'Web Content Accessibility Guidelines (WCAG) definierar hur webbinnehåll ska göras tillgängligt. Nivå AA är standarden de flesta organisationer siktar på och det jag testar mot. De fyra principerna — Perceivable, Operable, Understandable och Robust täcker allt från färgkontrast till tangentbordsnavigering och semantisk HTML.',
           processTitle: 'Så går en granskning till',
           processSteps: [
             { title: 'Avgränsning', desc: 'Vi definierar viktiga användarflöden, WCAG-nivå och eventuellt regelverk.' },
             { title: 'Manuell testning', desc: 'Tangentbordsnavigering, skärmläsartest, visuella kontroller och kodgranskning.' },
             { title: 'Rapportering', desc: 'Problem dokumenteras med allvarlighetsgrad, WCAG-kriterium och reproduktionssteg.' },
-            { title: 'Genomgång', desc: 'Ett samtal för att gå igenom fynd, svara på frågor och planera åtgärder.' },
-            { title: 'Uppföljning', desc: 'Valfri omtestning efter åtgärder för att verifiera lösning.' }
+            { title: 'Genomgång', desc: 'Ett samtal för att gå igenom fynd, svara på frågor och planera åtgärder.' }
           ],
           sidebarAria: 'Tillgänglighetsämnen',
           testingTitle: 'Testmetoder',
           testingItems: [
             'Enbart tangentbordsnavigering',
-            'Skärmläsartest (NVDA, VoiceOver, JAWS)',
+            'Skärmläsartest',
             'Färgkontrastanalys',
             'Zoom upp till 200 %',
             'Mobil- och responsivitetstest',
@@ -195,7 +189,6 @@ export default {
           toolsTitle: 'Standarder & verktyg',
           toolsItems: [
             'WCAG 2.1 & 2.2',
-            'ARIA Authoring Practices',
             'axe DevTools',
             'NVDA & VoiceOver',
             'Colour Contrast Analyser',
