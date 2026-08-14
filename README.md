@@ -65,7 +65,7 @@ deployonfriday/
 
 - **Home page copy & packages**: `src/views/Home.vue`
 - **Accessibility page**: `src/views/AccessibilityPage.vue`
-- **Contact form**: `src/views/ContactPage.vue` (FormSubmit email in form `action`)
+- **Contact form**: `src/views/ContactPage.vue` (FormSubmit → `why@deployonfriday.dev`)
 - **Navigation & footer**: `src/App.vue`
 - **Client logos**: `src/data/clients.js` and images in `public/images/`
 - **Design tokens**: `src/styles.css`

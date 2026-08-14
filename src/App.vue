@@ -60,7 +60,7 @@
           <img src="/images/logo.svg" alt="" width="24" height="24">
           <span>Deploy on Friday — Accessibility audits</span>
         </div>
-        <ul class="footer-links">
+        <ul class="footer-links" :aria-label="labels.footerNav">
           <li>
             <router-link :to="withLocale('/accessibility')">{{ labels.accessibility }}</router-link>
           </li>
@@ -68,7 +68,7 @@
             <router-link :to="withLocale('/contact')">{{ labels.contact }}</router-link>
           </li>
           <li>
-            <a href="https://linkedin.com/in/jimmiejephson" target="_blank" rel="noopener noreferrer">
+            <a href="https://www.linkedin.com/company/deploy-on-friday/" target="_blank" rel="noopener noreferrer">
               LinkedIn
               <span class="visually-hidden"> (opens in new tab)</span>
             </a>
@@ -82,6 +82,7 @@
 
 <script>
 import { getEffectiveTheme, setTheme } from './theme'
+import { updatePageMeta } from './pageMeta'
 
 export default {
   name: 'App',
@@ -110,7 +111,8 @@ export default {
             accessibility: 'Tillgänglighet',
             contact: 'Kontakt',
             openMenu: 'Öppna meny',
-            closeMenu: 'Stäng meny'
+            closeMenu: 'Stäng meny',
+            footerNav: 'Sidfotslänkar'
           }
         : {
             skipLink: 'Skip to main content',
@@ -124,7 +126,8 @@ export default {
             accessibility: 'Accessibility',
             contact: 'Contact',
             openMenu: 'Open menu',
-            closeMenu: 'Close menu'
+            closeMenu: 'Close menu',
+            footerNav: 'Footer links'
           }
     }
   },
@@ -142,8 +145,12 @@ export default {
     }
   },
   watch: {
-    $route() {
-      this.mobileOpen = false
+    $route: {
+      immediate: true,
+      handler(route) {
+        this.mobileOpen = false
+        updatePageMeta(route)
+      }
     }
   },
   methods: {
@@ -244,19 +251,22 @@ export default {
 .site-nav {
   display: flex;
   align-items: center;
-  gap: 0.25rem;
+  gap: 0.75rem;
 }
 
 .nav-list {
   display: none;
   list-style: none;
   align-items: center;
-  gap: 0.125rem;
+  gap: 0.375rem;
 }
 
 @media (min-width: 768px) {
   .nav-list {
     display: flex;
+    padding-right: 1.25rem;
+    margin-right: 0.25rem;
+    border-right: 1px solid var(--border);
   }
 }
 
@@ -265,22 +275,25 @@ export default {
   align-items: center;
   min-height: 44px;
   padding: 0.5rem 0.875rem;
-  color: var(--ink-dull);
+  color: var(--ink);
+  opacity: 0.78;
   font-size: 0.875rem;
   font-weight: 500;
   border-radius: var(--radius);
   text-decoration: none;
-  transition: color 0.15s ease, background 0.15s ease;
+  transition: color 0.15s ease, background 0.15s ease, opacity 0.15s ease;
 }
 
 .nav-link:hover,
 .nav-link:focus-visible {
   color: var(--ink);
+  opacity: 1;
   background: var(--bg-hover);
 }
 
 .nav-link.router-link-exact-active {
   color: var(--accent);
+  opacity: 1;
   background: var(--accent-glow);
   font-weight: 600;
   box-shadow: inset 0 0 0 1px var(--accent-border-subtle);
@@ -306,7 +319,8 @@ export default {
 .nav-actions {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.625rem;
+  flex-shrink: 0;
 }
 
 .locale-toggle,

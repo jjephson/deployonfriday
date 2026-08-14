@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <main id="main" tabindex="-1">
     <header class="page-hero">
       <div class="container">
         <p class="eyebrow">{{ copy.eyebrow }}</p>
@@ -11,7 +11,7 @@
       </div>
     </header>
 
-    <main id="main" class="page-content">
+    <div class="page-content">
       <div class="container">
         <div class="content-grid">
           <div class="prose">
@@ -40,7 +40,7 @@
             </p>
           </div>
 
-          <aside aria-label="Accessibility topics">
+          <aside :aria-label="copy.sidebarAria">
             <div class="info-card">
               <h3>{{ copy.testingTitle }}</h3>
               <ul>
@@ -68,8 +68,8 @@
           <router-link :to="withLocale('/contact')" class="btn btn-primary">{{ copy.ctaButton }}</router-link>
         </section>
       </div>
-    </main>
-  </div>
+    </div>
+  </main>
 </template>
 
 <script>
@@ -121,6 +121,7 @@ export default {
           statementTitle: 'This site\'s commitment',
           statementText: 'This website is built to WCAG 2.1 AA standards with semantic HTML, keyboard navigation, visible focus indicators, reduced motion support, and high contrast mode compatibility.',
           statementLink: 'Report an accessibility issue →',
+          sidebarAria: 'Accessibility topics',
           testingTitle: 'Testing methods',
           testingItems: [
             'Keyboard-only navigation',
@@ -182,6 +183,7 @@ export default {
           statementTitle: 'Denna webbplats',
           statementText: 'Webbplatsen är byggd enligt WCAG 2.1 AA med semantisk HTML, tangentbordsnavigering, synliga fokusindikatorer, stöd för reduced motion och högkontrastläge.',
           statementLink: 'Rapportera ett tillgänglighetsproblem →',
+          sidebarAria: 'Tillgänglighetsämnen',
           testingTitle: 'Testmetoder',
           testingItems: [
             'Enbart tangentbordsnavigering',

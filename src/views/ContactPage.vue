@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <main id="main" tabindex="-1">
     <header class="page-hero">
       <div class="container">
         <p class="eyebrow">{{ copy.eyebrow }}</p>
@@ -8,24 +8,24 @@
       </div>
     </header>
 
-    <main id="main" class="page-content">
+    <div class="page-content">
       <div class="container">
         <div class="content-grid">
           <aside class="contact-sidebar">
             <h2>{{ copy.sidebarTitle }}</h2>
             <p>{{ copy.sidebarText }}</p>
             <a
-              href="https://linkedin.com/in/jimmiejephson"
+              href="https://www.linkedin.com/company/deploy-on-friday/"
               target="_blank"
               rel="noopener noreferrer"
             >
-              LinkedIn — jimmiejephson
+              LinkedIn — Deploy on Friday
               <span class="visually-hidden"> (opens in new tab)</span>
             </a>
           </aside>
 
           <div>
-            <div v-if="submitted" class="form-status success" role="status">
+            <div v-if="submitted" class="form-status success" role="status" aria-live="polite">
               {{ copy.successMessage }}
             </div>
             <div v-if="error" class="form-status error" role="alert">
@@ -35,8 +35,9 @@
             <form
               v-if="!submitted"
               class="contact-form"
-              action="https://formsubmit.co/jimmie.jephson@gmail.com"
+              action="https://formsubmit.co/why@deployonfriday.dev"
               method="POST"
+              :aria-labelledby="copy.formTitleId"
               @submit="onSubmit"
             >
               <input type="hidden" name="_subject" :value="copy.formSubject">
@@ -44,6 +45,8 @@
               <input type="hidden" name="_template" value="table">
               <input type="text" name="_honey" class="honeypot" tabindex="-1" autocomplete="off" aria-hidden="true">
               <input type="hidden" name="_next" :value="redirectUrl">
+
+              <h2 :id="copy.formTitleId" class="visually-hidden">{{ copy.formTitle }}</h2>
 
               <div class="form-group">
                 <label for="name">{{ copy.nameLabel }}</label>
@@ -83,7 +86,7 @@
               <div class="form-group">
                 <label for="service">{{ copy.serviceLabel }}</label>
                 <select id="service" name="service" required>
-                  <option value="" disabled selected>{{ copy.servicePlaceholder }}</option>
+                  <option value="" disabled hidden>{{ copy.servicePlaceholder }}</option>
                   <option v-for="opt in copy.serviceOptions" :key="opt" :value="opt">{{ opt }}</option>
                 </select>
               </div>
@@ -94,20 +97,26 @@
                   id="message"
                   name="message"
                   required
+                  aria-describedby="message-hint"
                   :placeholder="copy.messagePlaceholder"
                 ></textarea>
-                <p class="form-hint">{{ copy.messageHint }}</p>
+                <p id="message-hint" class="form-hint">{{ copy.messageHint }}</p>
               </div>
 
-              <button type="submit" class="btn btn-primary" :disabled="submitting">
+              <button
+                type="submit"
+                class="btn btn-primary"
+                :disabled="submitting"
+                :aria-busy="submitting"
+              >
                 {{ submitting ? copy.submitting : copy.submitLabel }}
               </button>
             </form>
           </div>
         </div>
       </div>
-    </main>
-  </div>
+    </div>
+  </main>
 </template>
 
 <script>
@@ -126,6 +135,8 @@ export default {
           sidebarTitle: 'Prefer LinkedIn?',
           sidebarText: 'You can also reach me on LinkedIn.',
           formSubject: 'New audit inquiry from deployonfriday.dev',
+          formTitle: 'Contact form',
+          formTitleId: 'contact-form-title',
           nameLabel: 'Name',
           namePlaceholder: 'Your name',
           emailLabel: 'Email',
@@ -156,6 +167,8 @@ export default {
           sidebarTitle: 'Föredrar du LinkedIn?',
           sidebarText: 'Du kan också nå mig på LinkedIn.',
           formSubject: 'Ny granskningsförfrågan från deployonfriday.dev',
+          formTitle: 'Kontaktformulär',
+          formTitleId: 'contact-form-title',
           nameLabel: 'Namn',
           namePlaceholder: 'Ditt namn',
           emailLabel: 'E-post',

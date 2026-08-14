@@ -1,5 +1,5 @@
 <template>
-  <main id="main">
+  <main id="main" tabindex="-1">
     <section class="hero" aria-labelledby="hero-heading">
       <div class="container">
         <p class="eyebrow">{{ copy.eyebrow }}</p>
@@ -14,10 +14,15 @@
 
     <section class="section" :aria-label="copy.statsTitle">
       <div class="container">
-        <ul class="stats-row">
-          <li v-for="stat in copy.stats" :key="stat.label" class="stat-item">
-            <span class="stat-value">{{ stat.value }}</span>
-            <span class="stat-label">{{ stat.label }}</span>
+        <ul class="stats-row" role="list">
+          <li
+            v-for="stat in copy.stats"
+            :key="stat.label"
+            class="stat-item"
+            :aria-label="`${stat.value} ${stat.label}`"
+          >
+            <span class="stat-value" aria-hidden="true">{{ stat.value }}</span>
+            <span class="stat-label" aria-hidden="true">{{ stat.label }}</span>
           </li>
         </ul>
       </div>
@@ -32,8 +37,10 @@
         </header>
         <div class="feature-grid">
           <article v-for="feature in copy.features" :key="feature.title" class="feature-card">
-            <span class="feature-icon" aria-hidden="true">{{ feature.icon }}</span>
-            <h3>{{ feature.title }}</h3>
+            <div class="feature-card-header">
+              <span class="feature-icon" aria-hidden="true">{{ feature.icon }}</span>
+              <h3>{{ feature.title }}</h3>
+            </div>
             <p>{{ feature.desc }}</p>
           </article>
         </div>
@@ -56,7 +63,7 @@
           >
             <span v-if="pkg.badge" class="pricing-badge">{{ pkg.badge }}</span>
             <h3>{{ pkg.name }}</h3>
-            <div class="pricing-price">
+            <div class="pricing-price" aria-hidden="true">
               <span class="pricing-price-tag">{{ pkg.price.tag }}</span>
               <p class="pricing-price-value" :aria-label="pkg.price.label">
                 <template v-if="pkg.price.currencyBefore">
@@ -411,17 +418,17 @@ export default {
   border-color: var(--border-hover);
 }
 
-.feature-icon {
-  display: inline-flex;
+.feature-card-header {
+  display: flex;
   align-items: center;
-  justify-content: center;
-  width: 2.25rem;
-  height: 2.25rem;
-  margin-bottom: 1rem;
-  font-size: 1rem;
-  background: var(--bg-elevated);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-box);
+  gap: 0.625rem;
+  margin-bottom: 0.5rem;
+}
+
+.feature-icon {
+  flex-shrink: 0;
+  font-size: 1.125rem;
+  line-height: 1;
   color: var(--accent);
 }
 
@@ -429,7 +436,7 @@ export default {
   font-size: 1rem;
   font-weight: 600;
   color: var(--ink);
-  margin-bottom: 0.5rem;
+  margin: 0;
   letter-spacing: -0.01em;
 }
 
@@ -492,7 +499,9 @@ export default {
   margin-bottom: 0.25rem;
 }
 
+/* Prices hidden — remove display:none to show again */
 .pricing-price {
+  display: none;
   margin-bottom: 1rem;
   padding: 0.875rem 0;
 }
