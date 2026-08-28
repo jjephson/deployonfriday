@@ -59,7 +59,7 @@ export default {
   border: 1px solid var(--border);
   border-radius: var(--radius-box);
   overflow: hidden;
-  transition: border-color 0.15s ease;
+  transition: border-color var(--ease);
 }
 
 .client-card:hover .client-card-inner {
