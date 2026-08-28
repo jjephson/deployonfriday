@@ -1,12 +1,11 @@
 :root {
   --radius: 0.75rem;
-  --radius-lg: 1rem;
-  --radius-xl: 1.25rem;
   --radius-box: 0.125rem;
   --font-sans: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
   --container: 72rem;
   --header-height: 4rem;
+  --ease: 0.15s ease;
 }
 
 [data-theme='dark'] {
@@ -21,18 +20,11 @@
   --ink-faint: hsl(220 10% 55%);
   --ink-hover: hsl(220 16% 90%);
   --accent: hsl(215 75% 62%);
-  --accent-deep: hsl(215 70% 40%);
-  --accent-deep-hover: hsl(215 70% 44%);
-  --on-accent-deep: hsl(0 0% 100%);
   --accent-glow: hsl(215 75% 62% / 0.12);
   --accent-soft-bg: hsl(215 45% 20%);
   --accent-soft-fg: hsl(215 75% 88%);
   --accent-soft-border: hsl(215 55% 58%);
-  --accent-border-subtle: hsl(215 55% 54%);
-  --accent-border: hsl(215 55% 48%);
   --accent-border-strong: hsl(215 55% 55%);
-  --accent-subtle: hsl(215 45% 20%);
-  --accent-deep-border: hsl(215 55% 55%);
   --control-track-bg: #1f2023;
   --control-track-border: hsl(220 14% 48%);
   --control-idle-fg: hsl(220 12% 72%);
@@ -66,18 +58,11 @@
   --ink-faint: hsl(220 10% 52%);
   --ink-hover: hsl(222 30% 22%);
   --accent: hsl(215 85% 36%);
-  --accent-deep: hsl(215 80% 42%);
-  --accent-deep-hover: hsl(215 80% 38%);
-  --on-accent-deep: hsl(0 0% 100%);
   --accent-glow: hsl(215 85% 36% / 0.1);
   --accent-soft-bg: hsl(215 50% 94%);
   --accent-soft-fg: hsl(215 85% 28%);
   --accent-soft-border: hsl(215 55% 42%);
-  --accent-border-subtle: hsl(215 55% 42%);
-  --accent-border: hsl(215 55% 38%);
   --accent-border-strong: hsl(215 55% 32%);
-  --accent-subtle: hsl(215 70% 40% / 0.08);
-  --accent-deep-border: hsl(215 75% 35% / 0.45);
   --control-track-bg: hsl(220 22% 94%);
   --control-track-border: hsl(220 14% 52%);
   --control-idle-fg: hsl(220 15% 32%);
@@ -108,7 +93,6 @@
 }
 
 html {
-  scroll-behavior: auto;
   font-size: 16px;
 }
 
@@ -210,7 +194,7 @@ a:focus-visible {
   border: 1px solid transparent;
   cursor: pointer;
   text-decoration: none;
-  transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+  transition: background var(--ease), border-color var(--ease), color var(--ease);
 }
 
 .btn-primary {
@@ -289,7 +273,7 @@ a:focus-visible {
   font-family: inherit;
   cursor: pointer;
   border-radius: calc(var(--radius) - 4px);
-  transition: background 0.15s ease, color 0.15s ease, box-shadow 0.15s ease;
+  transition: background var(--ease), color var(--ease), box-shadow var(--ease);
 }
 
 .control-btn:hover,

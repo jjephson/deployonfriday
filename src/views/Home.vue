@@ -399,7 +399,7 @@ export default {
   background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: var(--radius-box);
-  transition: border-color 0.15s ease;
+  transition: border-color var(--ease);
 }
 
 .feature-card:hover {

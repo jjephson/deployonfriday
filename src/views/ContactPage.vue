@@ -262,12 +262,12 @@ export default {
   methods: {
     applyServiceFromQuery() {
       const slug = this.$route.query.service
-      if (!slug || typeof slug !== 'string') {
+      if (!slug) {
         this.selectedService = ''
         return
       }
       const match = this.copy.serviceOptions.find((opt) => opt.slug === slug)
-      this.selectedService = match ? match.label : ''
+      this.selectedService = match.label
     },
     focusFormIfRequested() {
       const slug = this.$route.query.service

@@ -189,7 +189,7 @@ export default {
   border-radius: 0 0 var(--radius) var(--radius);
   text-decoration: none;
   transform: translateY(-120%);
-  transition: transform 0.15s ease;
+  transition: transform var(--ease);
 }
 
 .skip-link:focus {
@@ -280,7 +280,7 @@ export default {
   font-weight: 500;
   border-radius: var(--radius);
   text-decoration: none;
-  transition: color 0.15s ease, background 0.15s ease;
+  transition: color var(--ease), background var(--ease);
 }
 
 .nav-link:hover,
